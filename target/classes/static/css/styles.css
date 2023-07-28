@@ -1,0 +1,308 @@
+@charset "ISO-8859-1";
+
+/* --------- */
+/* Variables */
+/* --------- */
+:root {
+	/* Colors */
+	--primary: #7f5af0;
+	--secondary: #72757e;
+	--tertiary: #2cb67d;
+	
+	--heading: #fffffe;
+	--paragraph: #94a1b2;
+	--white: #fffffe;
+	
+	--success: #2cb67d;
+	--outline: #010101;
+	
+	--bgDark: #16161a;
+	--bgLight: #242629;
+	
+	/* Fonts */
+	--hFont: verdana;
+	--pFont: sans-serif;
+	
+	/* Spacing */
+	--xl: 5rem;
+	--l: 4rem;
+	--m: 3rem;
+	--s: 2rem;
+	--xs: 1rem;
+	--tiny: 0.5rem;
+}
+
+* {
+	margin: 0px;
+}
+
+body {
+	background-color: var(--bgDark);
+}
+
+main {
+	border: 2px dashed red;
+	min-height: 100vh;
+}
+.limited {
+	margin: auto;
+	max-width: 1280px;
+}
+
+/*-----------------*/
+/* Utility Classes */
+/*-----------------*/
+.align-center {
+    align-items: center;
+    display: flex;
+}
+.align-end {
+	align-items: flex-end;
+	display: flex;
+}
+.align-start {
+	 align-items: flex-start;
+	 display: flex;
+}
+.border1 {
+	border-radius: 5px;
+}
+.border2 {
+	border-radius: 10px;	
+}
+.btnAnimation {
+	transition: 0.3s ease-out;
+}
+.btnAnimation:hover {
+	transform: scale(1.1);
+}
+.btnAnimation:active {
+	transform: scale(0.95);
+}
+.center {
+	align-items: center;
+	justify-content: center;
+}
+.divider {
+	border-color: var(--paragraph);
+	margin: auto;
+	width: 95%;
+}
+.flex {
+	display: flex;
+}
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+.flex-wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+.hFont {
+	font-family: var(--hFont);
+}
+.pFont {
+	font-family: var(--pFont);
+}
+.justify-around {
+	display: flex;
+	justify-content: space-around;
+}
+.justify-between {
+	display: flex;
+	justify-content: space-between;
+}
+.justify-center {
+	display: flex;
+	justify-content: center;
+}
+.justify-evenly {
+	display: flex;
+	justify-content: space-evenly;
+}
+.list-style-none {
+	list-style-type: none;
+	padding: 0px;
+}
+.text-align-center {
+	text-align: center;
+}
+.text-deco-none {
+	text-decoration: none;
+}
+.trans-ease-in {
+	transition: ease-in 0.3s;
+}
+.trans-ease-out {
+	transition: ease-out 0.3s;
+}
+
+/* --- Layout Utility Classes --- */
+.tb-container {
+	align-items: center;
+	display: flex;
+	justify-content: space-evenly;
+	
+	border: 2px dashed blue;
+}
+.tb-container div {
+	height: fit-content;
+}
+.tb-content {
+	border: 2px dashed green;
+	
+	width: 45%;
+}
+.tb-image {
+	border: 2px dashed yellow;
+	
+	width: 45%
+}
+.tb-image img {
+	display: block;
+	margin: auto;
+	width: 90%;
+}
+ 
+/*-----------*/
+/* Specifics */
+/*-----------*/
+
+/* ----- Navbar ----- */
+#navbar {
+	position: fixed;
+	width: 100%;
+}
+#navbarLeft {
+	margin: 1rem 0rem 1rem 2rem;
+}
+#navbarLeft img {
+	margin-right: var(--xs);
+	width: 4rem;
+
+}
+#navbarLeft h1 {
+	color: var(--primary);
+	font-weight: bold;
+	font-size: 2rem;
+}
+
+#publicNav {
+	gap: var(--xs);
+	margin: 1rem 2rem 1rem 0rem;
+}
+
+#publicNav li a {
+	border: 3px solid var(--primary);
+	display: block;
+	font-size: 1.1rem;
+	font-weight: bold;
+	padding: 0.5rem 1.5rem;
+	text-decoration: none;
+}
+
+#loginLink {
+	background-color: var(--bgDark);
+	border-radius: 15px 1px 15px 1px;
+	color: var(--primary);
+}
+#signupLink {
+	background-color: var(--primary);
+	border-radius: 1px 15px 1px 15px;
+	color: var(--bgDark);
+}
+
+/* ----- Footer ----- */
+footer {
+	background-color: var(--bgLight);
+}
+
+#footerLeft {
+	margin: 1rem 0rem 0.5rem 0.5rem;
+}
+#footerLeft img {
+	margin-right: var(--xs);
+	width: 50px;
+}
+#footerLeft h4 {
+	color: var(--primary);
+	font-size: 1.2rem;
+}
+
+#footerRight {
+	margin: 1rem 0.5rem 0.5rem 0rem;
+}
+
+#footLinks {
+	gap: var(--tiny);
+}
+#footLinks a {
+	border-bottom: 3px solid transparent;
+	color: var(--white);
+	font-weight: bold;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
+}
+#footLinks a:hover {
+	border-bottom: 3px solid var(--primary);
+}
+
+footer p {
+	color: var(--paragraph);
+	display: block;
+	padding: var(--xs);
+}
+
+/* ----- Landing Page ----- */
+#homeContent {
+	gap: var(--s);
+}
+.homeHeading {
+	color: var(--white);
+	font-family: var(--hFont);
+	font-size: 2.5rem;
+}
+.homeHeading strong.highlight {
+	color: var(--primary);
+}
+.homeParag {
+	color: var(--white);
+	font-family: var(--pFont);
+	font-size: 1.25rem;
+	line-height: 1.75rem;
+}
+.homeParag span {
+	color: var(--success);
+}
+#joinUsBtn {
+	background-color: transparent;
+	border: 3px solid var(--primary);
+	border-radius: 10px;
+	color: var(--white);
+	cursor: pointer;
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin: auto;
+	padding: 1rem 1.5rem;
+	width: fit-content;
+}
+#joinUsBtn:hover {
+	background-color: var(--primary);
+}
+ 
+/*--------------*/
+/* Break-points */
+/*--------------*/
+
+/* ----- Util ----- */
+
+
+
+
+
+
+
+
+
+
