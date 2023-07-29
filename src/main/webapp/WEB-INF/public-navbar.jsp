@@ -22,9 +22,9 @@
 		</a>
 
 		<ul id="publicNav" class="align-center list-style-none hFont">
-			<li><a href="/log-in" id="loginLink"
+			<li><a href="/login" id="loginLink"
 				class="btnAnimation">Log In</a></li>
-			<li><a href="/sign-up" id="signupLink"
+			<li><a href="/signup" id="signupLink"
 				class="btnAnimation">Sign Up</a></li>
 		</ul>
 		

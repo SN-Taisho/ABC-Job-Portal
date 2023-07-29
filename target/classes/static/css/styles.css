@@ -14,6 +14,7 @@
 	--white: #fffffe;
 	
 	--success: #2cb67d;
+	--danger: #e32b2b;
 	--outline: #010101;
 	
 	--bgDark: #16161a;
@@ -41,11 +42,10 @@ body {
 }
 
 main {
-	border: 2px dashed red;
-	min-height: 100vh;
+	min-height: 90vh;
+	margin: 100px auto 0px;
 }
 .limited {
-	margin: auto;
 	max-width: 1280px;
 }
 
@@ -85,7 +85,7 @@ main {
 }
 .divider {
 	border-color: var(--paragraph);
-	margin: auto;
+	margin: var(--tiny) auto;
 	width: 95%;
 }
 .flex {
@@ -138,25 +138,32 @@ main {
 	transition: ease-out 0.3s;
 }
 
-/* --- Layout Utility Classes --- */
+/* ----- Layout Utility Classes ----- */
 .tb-container {
 	align-items: center;
 	display: flex;
+	gap: var(--s);
 	justify-content: space-evenly;
-	
-	border: 2px dashed blue;
 }
-.tb-container div {
+.tb-container> {
 	height: fit-content;
 }
+
+/* Content div */
 .tb-content {
-	border: 2px dashed green;
-	
 	width: 45%;
 }
+
+/* Form div */
+.tb-form {
+	background-color: var(--bgLight);
+	border-radius: 15px;
+	padding: 0.5rem 1rem;
+	width: 350px;
+}
+
+/* Image div */
 .tb-image {
-	border: 2px dashed yellow;
-	
 	width: 45%
 }
 .tb-image img {
@@ -164,17 +171,113 @@ main {
 	margin: auto;
 	width: 90%;
 }
+
+/* ----- Form Utility Classes ----- */
+.form-heading {
+	color: var(--white);
+	font-size: 2rem;
+	font-family: var(--hFont);
+	text-align: center;
+	margin: var(--xs) auto;
+}
+
+.form-error {
+	color: var(--danger);
+	text-align: center;
+	font-family: var(--pFont);
+	font-size: 1rem;
+	margin-bottom: var(--xs);
+}
+
+.form-card {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: var(--xs);
+	height: fit-content;
+}
+
+.input-group {
+	color: var(--white);
+	font-family: var(--hFont);
+	margin: auto;
+	width: 80%;
+}
+.input-group input {
+	background-color: var(--bgDark);
+	border: 2px solid var(--bgDark);
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 0px;
+	outline: none;
+	color: var(--paragraph);
+	font-family: var(--pFont);
+	font-size: 1rem;
+	line-height: 1.5rem;
+	margin-top: var(--tiny);
+	padding: 0.3rem 1rem;
+	transition: ease-in-out 0.3s;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #16161a inset !important;
+    -webkit-text-fill-color: var(--paragraph) !important;
+}
+.input-group input:focus {
+	border: 2px solid var(--primary);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	transform: scale(1.05);
+}
+
+.form-forgot-pass {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+}
+
+.submit-button {
+	background-color: var(--primary);
+	border: none;
+	border-radius: 1px 15px 1px 15px;
+	display: block;
+	cursor: pointer;
+	padding: 0.7rem 1.5rem;
+	width: fit-content;
+}
+
+.alt-form-link {
+	color: var(--primary);
+	cursor: pointer;
+	display: block;
+	font-family: var(--pFont);
+	font-weight: bold;
+	text-decoration: underline;
+	text-decoration-color: transparent;
+	-webkit-text-decoration-color: transparent;
+	-moz-text-decoration-color: transparent;
+}
+.alt-form-link:hover {
+	text-decoration-color: var(--primary);
+	-webkit-text-decoration-color: var(--primary);
+	-moz-text-decoration-color: var(--primary);
+}
  
-/*-----------*/
+/* --------- */
 /* Specifics */
-/*-----------*/
+/* --------- */
 
 /* ----- Navbar ----- */
 #navbar {
 	position: fixed;
+	top: 0px;
 	width: 100%;
 }
 #navbarLeft {
+	background-color: var(--bgDark);
+	border-radius: 5px;
+	padding: 0rem 0.5rem 0.3rem;
 	margin: 1rem 0rem 1rem 2rem;
 }
 #navbarLeft img {
@@ -195,6 +298,7 @@ main {
 
 #publicNav li a {
 	border: 3px solid var(--primary);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	display: block;
 	font-size: 1.1rem;
 	font-weight: bold;
@@ -210,7 +314,7 @@ main {
 #signupLink {
 	background-color: var(--primary);
 	border-radius: 1px 15px 1px 15px;
-	color: var(--bgDark);
+	color: var(--white);
 }
 
 /* ----- Footer ----- */
@@ -219,7 +323,7 @@ footer {
 }
 
 #footerLeft {
-	margin: 1rem 0rem 0.5rem 0.5rem;
+	margin: 1rem 0rem 0.5rem 2rem;
 }
 #footerLeft img {
 	margin-right: var(--xs);
@@ -231,7 +335,7 @@ footer {
 }
 
 #footerRight {
-	margin: 1rem 0.5rem 0.5rem 0rem;
+	margin: 1rem 2rem 0.5rem 0rem;
 }
 
 #footLinks {
@@ -243,6 +347,7 @@ footer {
 	font-weight: bold;
 	padding: 0.5rem 1rem;
 	text-decoration: none;
+	transition: ease-out 0.3s;
 }
 #footLinks a:hover {
 	border-bottom: 3px solid var(--primary);
@@ -251,7 +356,7 @@ footer {
 footer p {
 	color: var(--paragraph);
 	display: block;
-	padding: var(--xs);
+	padding: var(--s);
 }
 
 /* ----- Landing Page ----- */
@@ -291,12 +396,40 @@ footer p {
 	background-color: var(--primary);
 }
  
-/*--------------*/
-/* Break-points */
-/*--------------*/
+/* ------------ */
+/* Breakpoints */
+/* ------------ */
 
-/* ----- Util ----- */
-
+/* ----- Utility Class Breakpoints ----- */
+@media only screen and (max-width: 922px) {
+	.tb-image.disappear {
+	display: none;
+	}
+}
+@media only screen and (max-width: 880px) {
+	.tb-container {
+		flex-direction: column;
+		justify-content: center;
+	}
+	.tb-container div {
+		width: 80%;
+	}
+	.tb-content {
+		text-align: center;
+	}
+	.tb-image img {
+		width: 40vh;
+	}
+}
+@media only screen and (max-width: 720px) {
+	.homeHeading {
+		font-size: 2rem;
+	}
+	.homeParag {
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
+}
 
 
 

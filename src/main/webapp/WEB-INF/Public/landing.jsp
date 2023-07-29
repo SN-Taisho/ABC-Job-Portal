@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="tb-image">
-		<img src="svgs/undraw_team_up_re_84ok.svg" alt="svg">
+		<img src="svgs/team-up.svg" alt="svg">
 	</div>
 
 </main>

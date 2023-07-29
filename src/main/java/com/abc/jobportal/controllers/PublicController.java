@@ -12,7 +12,7 @@ public class PublicController {
 	}
 	
 	@GetMapping("/home")
-	public String landing() {
+	public String landingPage() {
 		return "Public/landing";
 	}
 }
