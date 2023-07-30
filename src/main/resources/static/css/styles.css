@@ -241,10 +241,19 @@ input:-webkit-autofill:active{
 	background-color: var(--primary);
 	border: none;
 	border-radius: 1px 15px 1px 15px;
-	display: block;
+	color: var(--bgDark);
 	cursor: pointer;
+	display: block;
+	font-family: var(--hFont);
+	font-weight: bold;
 	padding: 0.7rem 1.5rem;
 	width: fit-content;
+	text-transform: uppercase;
+	transition: ease-in-out 0.3s;
+}
+.submit-button:hover {
+	color: var(--white);
+	transform: scale(1.05);
 }
 
 .alt-form-link {
@@ -262,6 +271,55 @@ input:-webkit-autofill:active{
 	text-decoration-color: var(--primary);
 	-webkit-text-decoration-color: var(--primary);
 	-moz-text-decoration-color: var(--primary);
+}
+
+/* ----- Public Pages Utility Classes ----- */
+.pub-heading {
+	color: var(--white);
+	font-family: var(--hFont);
+	font-size: 2rem;
+	font-weight: bold;
+	letter-spacing: 2px;
+	margin-bottom: var(--xs);
+	text-align: center;
+}
+.pub-heading.confirmation {
+	color: var(--tertiary);
+}
+
+.pub-card {
+	background-color: var(--bgLight);
+	border-radius: 5px;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	padding: var(--m) var(--s);
+	max-width: 900px;
+	height: fit-content;
+	margin: 1rem 2rem ;
+}
+.pub-card img {
+	margin-bottom: var(--s);
+	height: 350px;
+}
+
+.pub-paragraph {
+	color: var(--paragraph);
+	font-family: var(--pFont);
+	font-size: 1.1rem;
+	margin-bottom: var(--s);
+}
+
+.pub-link {
+	background-color: var(--tertiary);
+	border-radius: 5px;
+	color: var(--white);
+	font-family: var(--hFont);
+	font-size: 1.2rem;
+	font-weight: bold;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
+	text-transform: capitalize;
 }
  
 /* --------- */
