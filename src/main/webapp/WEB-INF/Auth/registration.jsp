@@ -13,23 +13,23 @@
 		<section class="tb-form flex-col">
 
 		<h3 class="form-heading">Sign Up</h3>
-		<span class="form-error">Sample Error Message</span>
+		<span id="error-text" class="form-error">Sample Error Message</span>
 		<form class="form-card" autocomplete="off">
 
-			<label class="input-group flex-col">First Name <input
-				type="text" placeholder="e.g. John" autocomplete="off"/>
+			<label class="input-group flex-col">Full Name <input id="fullname"
+				type="text" placeholder="e.g. John Doe" autocomplete="off" onkeyup="validateFullname()"/>
 			</label> 
 			
-			<label class="input-group flex-col">Last Name <input
-				type="text" placeholder="e.g. Doe" autocomplete="off"/>
+			<label class="input-group flex-col">Username <input id="username"
+				type="text" placeholder="e.g. JohnDoe01" autocomplete="off" onkeyup="validateUsername()"/>
 			</label> 
 			
-			<label class="input-group flex-col">Email <input type="email"
-				placeholder="example@email.com" autocomplete="false"/>
+			<label class="input-group flex-col">Email <input id="email"
+			type="email" placeholder="example@email.com" autocomplete="off" onkeyup="validateEmail()"/>
 			</label>
 			
-			<label class="input-group flex-col">Password <input type="password"
-				placeholder="e.g. johndoe01" autocomplete="off"/>
+			<label class="input-group flex-col">Password <input id="password" 
+			type="password" placeholder="e.g. JohnDoe2001" autocomplete="off" onkeyup="validatePassword()"/>
 			</label>
 
 
