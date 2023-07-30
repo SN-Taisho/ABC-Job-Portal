@@ -12,13 +12,13 @@
 
 	<section class="tb-form flex-col">
 
-		<h3 class="form-heading">Forgot Password</h3>
+		<h3 class="form-heading">Verify Email</h3>
 		<span class="form-error">Sample Error Message</span>
 		<form class="form-card" autocomplete="on">
 
-			<label class="input-group flex-col">Enter the email of your
-				account<input type="email" placeholder="example@email.com"
-				autocomplete="false" />
+			<label class="input-group flex-col" style="text-align: center;">Enter
+				the verification code sent to your email address<input type="email"
+				placeholder="example@email.com" autocomplete="false" />
 			</label>
 
 			<button class="submit-button">Submit</button>

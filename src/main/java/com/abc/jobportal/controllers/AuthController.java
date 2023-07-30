@@ -11,8 +11,8 @@ public class AuthController {
 		return "Auth/registration";
 	}
 	
-	@GetMapping("/signup-confirmation")
-	public String registrationConfirmationPage() {
+	@GetMapping("/email-verification")
+	public String emailVerificationPage() {
 		return "Auth/registration-confirmation";
 	}
 	
