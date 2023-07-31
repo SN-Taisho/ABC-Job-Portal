@@ -13,23 +13,23 @@
 		<section class="tb-form flex-col">
 
 		<h3 class="form-heading">Sign Up</h3>
-		<span id="error-text" class="form-error">Sample Error Message</span>
-		<form class="form-card" autocomplete="off">
+		<span id="error-text" class="form-error"></span>
+		<form id="registration" class="form-card" autocomplete="off" onsubmit="validateRegistration(event)">
 
-			<label class="input-group flex-col">Full Name <input id="fullname"
-				type="text" placeholder="e.g. John Doe" autocomplete="off" onkeyup="validateFullname()"/>
+				<label class="input-group flex-col">Full Name <input id="fullname" type="text" 
+			required placeholder="e.g. John Doe" autocomplete="off" onkeyup="validateFullname()"/>
 			</label> 
 			
-			<label class="input-group flex-col">Username <input id="username"
-				type="text" placeholder="e.g. JohnDoe01" autocomplete="off" onkeyup="validateUsername()"/>
+			<label class="input-group flex-col">Username <input id="username" type="text"
+			required placeholder="e.g. JohnDoe01" autocomplete="off" onkeyup="validateUsername()"/>
 			</label> 
 			
-			<label class="input-group flex-col">Email <input id="email"
-			type="email" placeholder="example@email.com" autocomplete="off" onkeyup="validateEmail()"/>
+			<label class="input-group flex-col">Email <input id="email" type="email"
+			required placeholder="example@email.com" autocomplete="off" onkeyup="validateEmail()"/>
 			</label>
 			
-			<label class="input-group flex-col">Password <input id="password" 
-			type="password" placeholder="e.g. JohnDoe2001" autocomplete="off" onkeyup="validatePassword()"/>
+			<label class="input-group flex-col">Password <input id="password" type="password"
+			required placeholder="e.g. JohnDoe2001" autocomplete="off" onkeyup="validatePassword()"/>
 			</label>
 
 

@@ -230,6 +230,15 @@ input:-webkit-autofill:active{
 	transform: scale(1.05);
 }
 
+.otp-container {
+	gap: var(--tiny);
+}
+.otp-container .OTP {
+	height: 30px;
+	width: 10px;
+	text-align: center;
+}
+
 .form-forgot-pass {
 	align-items: center;
 	display: flex;

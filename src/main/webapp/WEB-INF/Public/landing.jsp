@@ -17,7 +17,7 @@
 		</p>
 
 		<button id="joinUsBtn" class="trans-ease-out"
-			onclick="window.location='<%=request.getContextPath()%>/sign-up'">Join
+			onclick="window.location='<%=request.getContextPath()%>/signup'">Join
 			Us</button>
 	</div>
 
