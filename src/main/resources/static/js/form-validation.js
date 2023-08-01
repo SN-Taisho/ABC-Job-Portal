@@ -6,6 +6,7 @@ const errorText = document.getElementById("error-text");
 // COLORS
 const error = "#e32b2b";
 const success = "#2cb67d";
+const bgDark = "#16161a";
 
 // FIELD TAGS
 const regForm = document.getElementById("registrationForm");
@@ -20,7 +21,7 @@ const password = document.getElementById("password");
 // const code = document.getElementById("code");
 
 // REGEX
-var numberRegex = /^\d+$/;
+var numberRegex = /\d/;
 var alphanumericRegex = /^([a-z]*\d[a-z0-9]*|[a-z]+\d+[a-z0-9]*){50,}$/i;
 var emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-]+)(\.[a-zA-Z]{2,5}){1,2}$/;
 
@@ -136,20 +137,8 @@ function validatePassword() {
     }
     else {
     	errorText.innerText = "";
-        password.style.borderColor = success
+        password.style.borderColor = success;
     }
-}
-
-// SIX DIGIT CODE
-function validateCode() {
-	if (code.value.length < 6) {
-		code.style.borderColor = error;
-	} else if (!numberRegex.test(code.value)) {
-		code.style.borderColor = error;
-	} else {
-    	errorText.innerText = "";
-		code.style.borderColor = success;
-	}
 }
 
 
@@ -158,7 +147,7 @@ function validateCode() {
 // ERROR MESSAGE TAG
 
 const form = document.getElementById("otpForm");
-const inputs = form.querySelectorAll('.OTP')
+const inputs = form.querySelectorAll('.OTP');
 const KEYBOARDS = {
 	backspace: 8,
 	arrowLeft: 37,
@@ -169,19 +158,19 @@ const KEYBOARDS = {
 
 // MOVE TO NEXT INPUT BOX
 function handleInput(e) {
-const input = e.target
+const input = e.target;
 const nextInput = input.nextElementSibling
 	if (nextInput && input.value) {
-		nextInput.focus()
+		nextInput.focus();
 	if (nextInput.value) {
-		nextInput.select()
+		nextInput.select();
 		}
 	}
 }
 
 // SPLIT PASTE INTO THE DIFFERENT INPUTS
 function handlePaste(e) {
-	e.preventDefault()
+	e.preventDefault();
 	const paste = e.clipboardData.getData('text')
 	inputs.forEach((input, i) => {
 		input.value = paste[i] || ''
@@ -190,13 +179,17 @@ function handlePaste(e) {
 
 // MOVE BACK UPON BACKSPACE
 function handleBackspace(e) { 
-	const input = e.target
+	const input = e.target;
 		if (input.value) {
-		input.value = ''
-		return
+		input.value = '';
+		return;
 	}
 
-input.previousElementSibling.focus()
+	try {
+		input.previousElementSibling.focus();
+	} catch(err) {
+		
+	}
 }
 
 // MOVE LEFT
@@ -243,37 +236,59 @@ const nextInput = e.target.nextElementSibling
 
 function validateOTPForm(event) {
 
-event.preventDefault();
+	event.preventDefault();
+	
+	const digits = [];
+	const errFound = [];
 
-const nonNumeric = /\D/g;
+// 	STORES INPUT VALUES INTO DIGITS[]
+	for (i=0; i < inputs.length; i++) {
+		digits.push(inputs[i].value);
+		
+		if (isNaN(inputs[i].value)) {
+			errFound.push(i);
+			inputs[i].classList.add("error");
+		} else {
+			inputs[i].classList.remove("error");
+		}
+	}
 
-const digits = [];
-for (i=0; i < inputs.length; i++) {
-	console.log(inputs[i].value);
-	digits.push(inputs[i].value);
+// 	CONCATENATED DIGITS
+	const otpCode = digits.join('');
+
+	if (otpCode.length < 6) {
+		errorText.innerText = "Please enter the full 6 digit code";
+		return false;
+		
+	} else if (isNaN(otpCode)) {
+		errorText.innerText = "Please only enter numerical digits";
+		return false;
+		
+	} else {
+		form.submit();
+	}
 }
 
-const otpCode = digits.join('');
-
-console.log("Concatenated: " + otpCode);
-
-if (otpCode.length < 6) {
-	errorText.innerText = "Please enter the full 6 digit code";
-	return false;
-} else if (!numberRegex.test(otpCode)) {
-	errorText.innerText = "Please only enter numerical digits";
+// ONKEYUP OTP VALIDATION
+function validateOTP() {
 	
-//	CHECKS AND FINDS THE INDEX OF A NON-NUMERICAL CHARACTER
-	
-	nnFound = otpCode.match(nonNumeric);
-	console.log(nnFound);
-	errorIndex = otpCode.indexOf(nnFound);
-	
-	inputs[errorIndex].style.borderColor = error;
-	return false;
-}else {
-	form.submit();
-}
+	const digits = [];
+	const errFound = [];
 
-
+// 	STORES INPUT VALUES INTO DIGITS[]
+	for (i=0; i < inputs.length; i++) {
+		digits.push(inputs[i].value);
+		
+		if (isNaN(inputs[i].value)) {
+			errFound.push(i);
+			inputs[i].classList.remove("correct");
+			inputs[i].classList.add("error");
+		} else if (inputs[i].value == "") {
+			inputs[i].classList.remove("correct");
+			inputs[i].classList.remove("error");
+		} else {
+			inputs[i].classList.remove("error");
+			inputs[i].classList.add("correct");
+		}
+	}
 }
