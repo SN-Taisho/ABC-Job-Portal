@@ -23,24 +23,29 @@
 			</label> -->
 			
 			<label class="input-group flex-col text-align-center">Enter the six digit code sent to your email address
+				
+				<input id="fullOTP" type="hidden" maxlength="6" autocomplete="off">
+				
 				<div class="otp-container justify-center" style="margin: 0.5rem 0rem;">
+				
 					<input class="OTP" type="text" required maxlength="1"
-					autocomplete="off" onkeyup="validateOTP()" value="1">
+					autocomplete="off" onkeyup="validateOTP()">
 					
 					<input class="OTP" type="text" required maxlength="1"
-					autocomplete="off" onkeyup="validateOTP()" value="2">
+					autocomplete="off" onkeyup="validateOTP()">
 					
 					<input class="OTP" type="text" required maxlength="1"
-					autocomplete="off" onkeyup="validateOTP()" value="3">
+					autocomplete="off" onkeyup="validateOTP()">
 					
 					<input class="OTP" type="text" required maxlength="1"
-					autocomplete="off" onkeyup="validateOTP()" value="4">
+					autocomplete="off" onkeyup="validateOTP()">
 					
 					<input class="OTP" type="text" required maxlength="1"
-					autocomplete="off" onkeyup="validateOTP()" value="5">
+					autocomplete="off" onkeyup="validateOTP()">
 					
 					<input class="OTP" type="text" required maxlength="1"
-					autocomplete="off" onkeyup="validateOTP()" value="6">
+					autocomplete="off" onkeyup="validateOTP()">
+					
 				</div>
 			</label>
 

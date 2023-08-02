@@ -234,8 +234,8 @@ input:-webkit-autofill:active{
 	gap: var(--tiny);
 }
 .otp-container .OTP {
-	height: 30px;
-	width: 10px;
+	height: 32px;
+	width: 12px;
 	text-align: center;
 }
 
@@ -485,7 +485,7 @@ footer p {
 		flex-direction: column;
 		justify-content: center;
 	}
-	.tb-container div {
+	.tb-container>div {
 		width: 80%;
 	}
 	.tb-content {

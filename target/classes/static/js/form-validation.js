@@ -142,11 +142,13 @@ function validatePassword() {
 }
 
 
+
 /*----------  6-DIGIT CODE VALIDATION  ----------*/
 
 // ERROR MESSAGE TAG
 
 const form = document.getElementById("otpForm");
+const fullOTP = document.getElementById("fullOTP");
 const inputs = form.querySelectorAll('.OTP');
 const KEYBOARDS = {
 	backspace: 8,
@@ -265,7 +267,9 @@ function validateOTPForm(event) {
 		return false;
 		
 	} else {
+		fullOTP.value = otpCode;
 		form.submit();
+		alert(fullOTP.value);
 	}
 }
 
@@ -290,5 +294,8 @@ function validateOTP() {
 			inputs[i].classList.remove("error");
 			inputs[i].classList.add("correct");
 		}
+	}
+	if (errFound == "") {
+		errorText.innerText = "";
 	}
 }
