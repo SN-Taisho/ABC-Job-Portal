@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 
 <!-- paired navbar -->
-<jsp:include page="../public-navbar.jsp"></jsp:include>
+<jsp:include page="../public-navbar.jsp">
+	<jsp:param value="Reset Password" name="HTMLtitle"/>
+</jsp:include>
 
 <main class="tb-container limited">
 
@@ -30,5 +32,5 @@
 	</div>
 
 </main>
-
+<script type="text/javascript" src="js/form-validation.js"></script>
 <jsp:include page="../footer.jsp"></jsp:include>

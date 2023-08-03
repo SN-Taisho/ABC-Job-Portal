@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 
 <!-- paired navbar -->
-<jsp:include page="../public-navbar.jsp"></jsp:include>
+<jsp:include page="../public-navbar.jsp">
+	<jsp:param value="Email Verification" name="HTMLtitle"/>
+</jsp:include>
 
 <main class="tb-container limited">
 
@@ -15,12 +17,6 @@
 		<h3 class="form-heading">OTP<br>Verification Code</h3>
 		<span id="error-text" class="form-error"></span>
 		<form id="otpForm" class="form-card" autocomplete="on" onsubmit="validateOTPForm(event)">
-
-<!-- 			<label class="input-group flex-col">Enter the six digit code
-				sent to your email address<input id="code" type="text" required maxlength="6"
-				placeholder="000000" autocomplete="off" onkeyup="validateCode()"
-				style="margin: var(--tiny) auto 0rem; text-align: center; width: 150px;"/>
-			</label> -->
 			
 			<label class="input-group flex-col text-align-center">Enter the six digit code sent to your email address
 				
@@ -58,11 +54,7 @@
 
 		</form>
 	</section>
-	
-	<script src="js/otp-validation.js"></script>
-
-
 
 </main>
-
+<script type="text/javascript" src="js/form-validation.js"></script>
 <jsp:include page="../footer.jsp"></jsp:include>

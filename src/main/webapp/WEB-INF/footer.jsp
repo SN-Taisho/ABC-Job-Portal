@@ -21,8 +21,6 @@
 	<p class="pFont text-align-center">©2022</p>
 </footer>
 
-<script type="text/javascript" src="js/form-validation.js"></script>
-
 </body>
 
 </html>

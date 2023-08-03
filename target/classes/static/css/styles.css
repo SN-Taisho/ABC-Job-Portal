@@ -303,6 +303,15 @@ input:-webkit-autofill:active{
 	color: var(--tertiary);
 }
 
+.pub-subheading {
+	color: var(--white);
+	font-family: var(--hFont);
+	font-size: 1.5rem;
+	font-weight: bold;
+	letter-spacing: 2px;
+	margin-bottom: var(--xs);
+}
+
 .pub-card {
 	background-color: var(--bgLight);
 	border-radius: 5px;
@@ -312,11 +321,12 @@ input:-webkit-autofill:active{
 	padding: var(--m) var(--s);
 	max-width: 900px;
 	height: fit-content;
-	margin: 1rem 2rem ;
+	margin: var(--xs) var(--s) var(--m);
 }
 .pub-card img {
 	margin-bottom: var(--s);
-	height: 350px;
+	max-height: 350px;
+	width: 80%;
 }
 
 .pub-paragraph {
@@ -344,12 +354,12 @@ input:-webkit-autofill:active{
 
 /* ----- Navbar ----- */
 #navbar {
+	background-color: var(--bgDark);
 	position: fixed;
 	top: 0px;
 	width: 100%;
 }
 #navbarLeft {
-	background-color: var(--bgDark);
 	border-radius: 5px;
 	padding: 0rem 0.5rem 0.3rem;
 	margin: 1rem 0rem 1rem 2rem;
@@ -430,7 +440,7 @@ footer {
 footer p {
 	color: var(--paragraph);
 	display: block;
-	padding: var(--s);
+	padding: var(--tiny);
 }
 
 /* ----- Landing Page ----- */
@@ -469,6 +479,27 @@ footer p {
 #joinUsBtn:hover {
 	background-color: var(--primary);
 }
+
+
+/* ----- Pubic Pages ----- */
+
+/* Contact Us */
+#contactContainer {
+	gap: var(--s);
+}
+.contact-card {
+	background-color: var(--bgDark);
+	border-radius: 10px;
+	padding: 1rem 2rem;
+}
+.contact-card .pub-subheading {
+	text-align: center;
+}
+.contact-card p {
+	margin-bottom: 0rem;
+	text-align: center;
+}
+
  
 /* ------------ */
 /* Breakpoints */

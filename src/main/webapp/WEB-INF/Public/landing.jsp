@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 
 <!-- paired navbar -->
-<jsp:include page="../public-navbar.jsp"></jsp:include>
+<jsp:include page="../public-navbar.jsp">
+	<jsp:param value="Home" name="HTMLtitle" />
+</jsp:include>
 
 <main class="tb-container limited">
 

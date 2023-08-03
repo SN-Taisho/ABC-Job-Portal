@@ -11,7 +11,7 @@
 		<h3 class="pub-heading confirmation">Password Changed</h3>
 		<p class="pub-paragraph">Your password was been successfully
 			changed, you may now login using the new password</p>
-		<a href="" class="pub-link btnAnimation">Login now!</a>
+		<a href="/login" class="pub-link btnAnimation">Login now!</a>
 	</div>
 
 </main>
