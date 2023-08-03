@@ -333,6 +333,7 @@ input:-webkit-autofill:active{
 	color: var(--paragraph);
 	font-family: var(--pFont);
 	font-size: 1.1rem;
+	line-height: 2rem;
 	margin-bottom: var(--s);
 }
 
@@ -346,6 +347,12 @@ input:-webkit-autofill:active{
 	padding: 0.5rem 1rem;
 	text-decoration: none;
 	text-transform: capitalize;
+}
+
+.pub-date {
+	color: var(--paragraph);
+	font-family: var(--pFont);
+	font-size: 1rem;
 }
  
 /* --------- */
@@ -446,6 +453,7 @@ footer p {
 /* ----- Landing Page ----- */
 #homeContent {
 	gap: var(--s);
+	padding-left: var(--m);
 }
 .homeHeading {
 	color: var(--white);
@@ -533,6 +541,13 @@ footer p {
 	.homeParag {
 		font-size: 1rem;
 		line-height: 1.5rem;
+	}
+}
+
+/* ----- Specific Breakpoints ----- */
+@media only screen and (max-width: 880px) {
+	#homeContent {
+	padding-left: 0rem;
 	}
 }
 

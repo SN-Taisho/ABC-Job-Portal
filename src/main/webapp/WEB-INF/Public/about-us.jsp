@@ -11,7 +11,7 @@
 	<div class="pub-card">
 		<h3 class="pub-heading">About Us</h3>
 		<img src="svgs/software-engineers.svg" alt="svg">
-		<p class="pub-paragraph" style="line-height: 2rem;">
+		<p class="pub-paragraph">
 			ABC Job Portal is a website where you can browse through hundreds of
 			job posts from top companies and apply for your dream job with just a
 			few clicks.<br> <br>Don't miss this chance and join ABC Job
