@@ -18,10 +18,14 @@
 			and protect your data when using our web portal. By accessing ABC
 			Jobs, you agree to the practices stated below.</p>
 
+		<hr class="divider" style="margin-bottom: var(--s);">
+
 		<h4 class="pub-subheading">Personal Information</h4>
 		<p class="pub-paragraph">We may collect personal information such
 			as your name, age, location, email address, education, and
 			occupations.</p>
+
+		<hr class="divider" style="margin-bottom: var(--s);">
 
 		<h4 class="pub-subheading">Job Applications</h4>
 		<p class="pub-paragraph">We use your personal information to
@@ -32,11 +36,15 @@
 		<p class="pub-paragraph">During the job application process
 			relevant personal information will be shared to potential employers
 			or recruiters.</p>
+			
+		<hr class="divider" style="margin-bottom: var(--s);">
 
 		<h4 class="pub-subheading">Legal Compliance</h4>
 		<p class="pub-paragraph">If the situation requires, we may
 			disclose your personal information to protect our's and other's
 			rights and safety.</p>
+
+		<hr class="divider" style="margin-bottom: var(--s);">
 
 		<h4 class="pub-subheading">Data Security</h4>
 		<p class="pub-paragraph">We enforce industry-standard security
@@ -46,6 +54,8 @@
 		<h4 class="pub-subheading">Account Settings</h4>
 		<p class="pub-paragraph">You can change or review your account
 			information by logging into ABC Jobs and accessing the profile page</p>
+
+		<hr class="divider" style="margin-bottom: var(--s);">
 
 		<h4 class="pub-subheading">Changes to this Privacy Policy</h4>
 		<p class="pub-paragraph">We may update our Privacy Policy
