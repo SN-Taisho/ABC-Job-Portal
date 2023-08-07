@@ -31,7 +31,7 @@ public class AuthController {
 		return "Auth/forgot-password";
 	}
 	
-	@GetMapping("/reset-password-email")
+	@GetMapping("/account-verification")
 	public String passwrdResetEmailPage() {
 		return "Auth/password-email";
 	}

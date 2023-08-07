@@ -1,5 +1,5 @@
 
-<footer>
+<footer style="background-color: var(--bgLight)">
 	<div id="upperFooter" class="align-center justify-between">
 		<a id="footerLeft" class="align-center text-deco-none" href="/home">
 			<img src="images/Logo.png" alt="logo.png" width="100">
@@ -22,5 +22,7 @@
 </footer>
 
 </body>
+
+<script type="text/javascript" src="js/nav-menu.js"></script>
 
 </html>

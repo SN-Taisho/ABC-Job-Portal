@@ -1,4 +1,3 @@
-console.log("js connected");
 
 // ERROR MESSAGE TAG
 const errorText = document.getElementById("error-text");

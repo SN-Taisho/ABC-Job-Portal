@@ -45,12 +45,7 @@
 				</div>
 			</label>
 
-			<button class="submit-button">Verify</button>
-
-			<hr class="divider">
-
-			<a class="alt-form-link trans-ease-out" href="/signup"
-				style="margin-bottom: 1rem;">Don't have an account?</a>
+			<button class="submit-button" style="margin-bottom: var(--s);">Verify</button>
 
 		</form>
 	</section>

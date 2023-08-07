@@ -354,6 +354,65 @@ input:-webkit-autofill:active{
 	font-family: var(--pFont);
 	font-size: 1rem;
 }
+
+/* ----- Nav-menu Utility Classes ----- */
+.nav-menu-open {
+	background-color: var(--bgLight);
+	border: none;
+	border-radius: 5px;
+	color: var(--primary);
+	cursor: pointer;
+	font-size: 2.5rem;
+	margin: 1rem 2rem 1rem 0rem;
+	padding: 0.5rem;
+}
+.nav-menu-open.toggled {
+	color: var(--white);
+}
+
+.nav-menu {
+	background-color: var(--bgLight);
+	border-radius: 0rem 0rem 0rem 5px;
+	height: fit-content;
+	position: fixed;
+	padding: var(--xs) 0rem var(--tiny);
+	right: -300px;
+	width: 300px;
+	transition: ease-out 0.2s;
+}
+.nav-menu.alt {
+	border-top: 3px solid var(--white);
+	top: 70px;
+}
+.nav-menu.opened {
+	right: 0px;
+}
+.nav-menu-links {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: var(--xs);
+	list-style: none;
+	padding: var(--xs) var(--s);
+}
+.nav-menu-links a {
+	background-color: var(--bgDark);
+	border-radius: 10px;
+	color: var(--white);
+	display: block;
+	font-family: var(--hFont);
+	font-size: 1.5rem;
+	padding: var(--tiny) var(--xs);
+	text-align: center;
+	text-decoration: none;
+	transition: ease-out 0.3s;
+	width: 200px;
+}
+.nav-menu-links a:hover {
+	color: var(--primary);
+	transform: scale(1.05);
+}
+ 
  
 /* --------- */
 /* Specifics */
@@ -362,9 +421,13 @@ input:-webkit-autofill:active{
 /* ----- Navbar ----- */
 #navbar {
 	background-color: var(--bgDark);
+	height: 100px;
 	position: fixed;
 	top: 0px;
 	width: 100%;
+}
+#navbar.alt {
+	height: 70px;
 }
 #navbarLeft {
 	border-radius: 5px;
@@ -374,12 +437,17 @@ input:-webkit-autofill:active{
 #navbarLeft img {
 	margin-right: var(--xs);
 	width: 4rem;
-
+}
+#navbar.alt #navbarLeft img {
+	width: 3rem;
 }
 #navbarLeft h1 {
 	color: var(--primary);
 	font-weight: bold;
 	font-size: 2rem;
+}
+#navbar.alt #navbarLeft h1 {
+	font-size: 1.75rem;
 }
 
 #publicNav {
@@ -407,6 +475,34 @@ input:-webkit-autofill:active{
 	border-radius: 1px 15px 1px 15px;
 	color: var(--white);
 }
+
+#portalNav {
+	gap: var(--xs);
+	margin: 1rem 0.5rem;
+}
+#portalNav li a {
+	background-color: transparent;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	color: var(--primary);
+	display: block;
+	font-size: 1.1rem;
+	font-weight: bold;
+	height: 50px;
+	padding: 0.5rem 1.5rem;
+	text-decoration: none;
+}
+#portalNav li a:hover {
+	border-bottom: 3px solid var(--primary);
+}
+
+.nav-icons {
+	top: 7px;
+	left: -5px;
+	position: relative;
+	font-size: 2rem;
+}
+.nav-icons
 
 /* ----- Footer ----- */
 footer {
@@ -534,6 +630,7 @@ footer p {
 		width: 40vh;
 	}
 }
+
 @media only screen and (max-width: 720px) {
 	.homeHeading {
 		font-size: 2rem;
@@ -542,12 +639,47 @@ footer p {
 		font-size: 1rem;
 		line-height: 1.5rem;
 	}
+	#upperFooter {
+		flex-direction: column;
+	}
+	#footerLeft {
+		margin: var(--xs) 0rem;
+	}
+	#footerRight {
+		margin: var(--tiny) 0rem;
+	}
+}
+@media only screen and (min-width: 721px) {
+	.nav-menu-open.autohide {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	#footLinks {
+		flex-direction: column;
+		gap: var(--s);
+	}
 }
 
 /* ----- Specific Breakpoints ----- */
 @media only screen and (max-width: 880px) {
 	#homeContent {
-	padding-left: 0rem;
+		padding-left: 0rem;
+	}
+}
+
+@media only screen and (max-width: 720px) {
+	#publicNav {
+		display: none;
+	}
+	#portalNav {
+		display: none;
+	}
+}
+@media only screen and (max-width: 400px) {
+	#navbarLeft h1 {
+		font-size: 1.5rem;
 	}
 }
 
