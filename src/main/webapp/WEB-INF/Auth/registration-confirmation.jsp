@@ -52,5 +52,5 @@
 	</section>
 
 </main>
-<script type="text/javascript" src="js/form-validation.js"></script>
+<script type="text/javascript" src="js/otp-validation.js"></script>
 <jsp:include page="../footer.jsp"></jsp:include>

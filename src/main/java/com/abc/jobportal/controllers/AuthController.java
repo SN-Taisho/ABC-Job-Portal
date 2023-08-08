@@ -18,7 +18,7 @@ public class AuthController {
 	
 //	REGISTRATION
 	@GetMapping("/signup")
-	public String registrationPage() {
+	public String registrationPage(@ModelAttribute("user") User user) {
 		return "Auth/registration";
 	}
 	
@@ -27,7 +27,7 @@ public class AuthController {
     	
     	userService.save(user);
     	
-    	return "redirect:email-verification";
+    	return "redirect:thank-you";
     }
 	
 	
