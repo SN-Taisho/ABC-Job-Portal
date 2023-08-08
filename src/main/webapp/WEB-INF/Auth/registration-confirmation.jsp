@@ -9,7 +9,7 @@
 <main class="tb-container limited">
 
 	<div class="tb-image disappear">
-		<img src="svgs/forgot-password.svg" alt="svg">
+		<img src="svgs/email-validation.svg" alt="svg">
 	</div>
 
 	<section class="tb-form flex-col">
@@ -18,7 +18,8 @@
 		<span id="error-text" class="form-error"></span>
 		<form id="otpForm" class="form-card" autocomplete="on" onsubmit="validateOTPForm(event)">
 			
-			<label class="input-group flex-col text-align-center">Enter the six digit code sent to your email address
+			<label class="input-group flex-col text-align-center">
+			Please enter the verification code sent to your email below
 				
 				<input id="fullOTP" type="hidden" maxlength="6" autocomplete="off">
 				
