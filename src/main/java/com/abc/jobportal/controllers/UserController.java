@@ -17,7 +17,7 @@ public class UserController {
 		return "User/Search";
 	}
 	
-	@GetMapping("/user-profile")
+	@GetMapping("/my-profile")
 	public String userProfile() {
 		return "User/Profile";
 	}

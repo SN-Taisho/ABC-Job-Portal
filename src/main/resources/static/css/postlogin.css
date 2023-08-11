@@ -4,6 +4,7 @@
 	grid-template-columns: 250px 70%;
 	justify-content: space-around;
 	max-width: 1280px;
+	padding-bottom: var(--l)
 }
 
 .single-main {
@@ -42,6 +43,7 @@
 }
 
 .sp-img {
+	border: 5px solid var(--bgLight);
 	border-radius: 50%;
 	display: block;
 	left: 50%;
@@ -179,7 +181,7 @@
 	outline-offset: 0px;
 }
 
-/* Thread Replies */
+/* ----- Threads ----- */
 .replies-container {
 	display: flex;
 	flex-direction: column;
@@ -228,6 +230,126 @@
 	margin-bottom: 1rem;
 }
 
+/* ----- Profile ----- */
+.profile {
+	background-color: var(--bgLight);
+	border-radius: 10px;
+	position: relative;
+	height: fit-content;
+	padding-bottom: 1rem;
+}
+
+.cover-photo {
+	border-radius: 10px 10px 0px 0px;
+	height: 150px;
+	margin-bottom: 2rem;
+	object-fit: cover;
+	width: 100%;
+}
+
+.profile-photo {
+	border: 5px solid var(--bgLight);
+	border-radius: 50%;
+	display: block;
+	left: 2.5rem;
+	position: absolute;
+	width: 100px;
+	top: 5rem;
+}
+
+.profile-details {
+	font-family: var(--pFont);
+	padding: 1rem;
+}
+
+.profile-name {
+	color: var(--white);
+	font-family: var(--hFont);
+	font-size: 1.25rem;
+}
+.profile-occupation {
+	color: var(--primary) !important;
+	font-weight: bold;
+	margin: 0.25rem 0rem 2rem !important;
+}
+
+.profile-details p {
+	color: var(--paragraph);
+	margin: 0.25rem 0rem 0.5rem;
+}
+
+/* PROFILE ACTIONS */
+.profile-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: space-evenly;
+	margin: 1rem 0.5rem;
+}
+.action-btn {
+	background-color: var(--primary);
+	border: none;
+	border-radius: 3px;
+	color: var(--white);
+	cursor: pointer;
+	display: block;
+	font-family: var(--hFont);
+	font-size: 1rem;
+	padding: 0.5rem;
+	text-align: center;
+	text-decoration: none;
+	transition: ease-out 0.3s;
+	width: 125px;
+}
+.action-btn:hover {
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	transform: scale(1.1);
+}
+
+
+/* ----- User Experience Container ----- */
+.info-container {
+	display: grid;
+	grid-template-columns: 350px 350px;
+	justify-content: space-evenly;
+}
+
+.info-section {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: var(--xs);
+}
+
+.is-heading {
+	color: var(--white);
+	font-family: var(--hFont);
+	font-weight: bold;
+	font-size: 1.5rem;
+	letter-spacing: 2px;
+	margin-bottom: 0.25;
+}
+
+/* Mini-Cards Utility */
+.mini-card {
+	background-color: var(--bgLight);
+	border-radius: 5px;
+	padding: 0.5rem;
+	width: 90%;
+}
+.mc-heading {
+	color: var(--white);
+	font-family: var(--hFont);
+	font-weight: bold;
+	font-size: 1.1rem;
+	margin-bottom: 0.5rem;
+}
+.mini-card p {
+	color: var(--paragraph);
+	font-family: var(--pFont);
+	font-size: 1rem;
+}
+
 
 /* ------------ */
 /* Breakpoints */
@@ -240,6 +362,10 @@
 	}
 	.side-profile {
 	display: none;
+	}
+	
+	.profile-main {
+	grid-template-columns: 85%;
 	}
 }
 

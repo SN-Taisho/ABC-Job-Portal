@@ -50,7 +50,7 @@
 		<ul class="nav-menu-links">
 			<li><a href="/home">Home</a></li>
 			<li><a href="/signup">Job</a></li>
-			<li><a href="/profile">Profile</a></li>
+			<li><a href="/my-profile">Profile</a></li>
 			<li><a href="/search">Search</a></li>
 		</ul>
 	</nav>

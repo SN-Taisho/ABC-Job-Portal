@@ -1,6 +1,5 @@
 package com.abc.jobportal.security;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -53,12 +52,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/images/**").permitAll()
                     .antMatchers("/js/**").permitAll()
                     .antMatchers(HttpMethod.GET, "/favicon.*").permitAll()
-                    .antMatchers(HttpMethod.GET, "/login").permitAll()
                     .antMatchers(HttpMethod.GET, "/home").permitAll()
-                    .antMatchers(HttpMethod.GET, "/about-us").permitAll()
-                    .antMatchers(HttpMethod.GET, "/contact-us").permitAll()
-                    .antMatchers(HttpMethod.GET, "/privacy-policy").permitAll()
-                    .antMatchers(HttpMethod.GET, "/terms-and-conditions").permitAll()
+                    .antMatchers(HttpMethod.GET, "/login").permitAll()
+                    .antMatchers(HttpMethod.GET, "/registration").permitAll()
+                    .antMatchers(HttpMethod.GET, "/about-us").permitAll()      
+                    .antMatchers(HttpMethod.GET, "/contact-us").permitAll() 
+                    .antMatchers(HttpMethod.GET, "/privacy-policy").permitAll() 
                 .and()
                 .logout()
                     .logoutSuccessUrl("/logout")

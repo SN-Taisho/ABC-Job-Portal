@@ -33,15 +33,17 @@ public class User {
     
     private String password;
     
-    private Long OTP;
-    
-    private String status;
     
     private String occupation;
     
     private String location;
     
     private String bio;
+    
+//  ACC Verification
+    private String OTP;
+    
+    private Boolean activated;
     
 //  CONTRUCTORS
     public User() {
@@ -54,6 +56,13 @@ public class User {
 		this.password = password;
 	}
 
+	public User(String username, Set<Role> roles, String password) {
+		super();
+		this.username = username;
+		this.roles = roles;
+		this.password = password;
+	}
+
 	public User(String fullname, String username, Set<Role> roles, String password) {
 		super();
 		this.fullname = fullname;
@@ -62,8 +71,8 @@ public class User {
 		this.password = password;
 	}
 
-	public User(Long id, String fullname, String username, Set<Role> roles, String email, String password, Long oTP,
-			String status, String occupation, String location, String bio) {
+	public User(Long id, String fullname, String username, Set<Role> roles, String email, String password,
+			String occupation, String location, String bio, String oTP, Boolean activated) {
 		super();
 		this.id = id;
 		this.fullname = fullname;
@@ -71,14 +80,14 @@ public class User {
 		this.roles = roles;
 		this.email = email;
 		this.password = password;
-		OTP = oTP;
-		this.status = status;
 		this.occupation = occupation;
 		this.location = location;
 		this.bio = bio;
+		OTP = oTP;
+		this.activated = activated;
 	}
-
 	
+
 //	GETTER SETTERS
 	public Long getId() {
 		return id;
@@ -128,22 +137,6 @@ public class User {
 		this.password = password;
 	}
 
-	public Long getOTP() {
-		return OTP;
-	}
-
-	public void setOTP(Long oTP) {
-		OTP = oTP;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getOccupation() {
 		return occupation;
 	}
@@ -168,8 +161,25 @@ public class User {
 		this.bio = bio;
 	}
 
+	
+	public String getOTP() {
+		return OTP;
+	}
 
-//	EQUALS AND HASH
+	public void setOTP(String oTP) {
+		OTP = oTP;
+	}
+	
+	public Boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(Boolean activated) {
+		this.activated = activated;
+	}
+	
+
+	//	EQUALS AND HASH
 	@Override
 	public boolean equals(Object o) {
 	    if (this == o) return true;
@@ -189,7 +199,10 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", fullname=" + fullname + ", username=" + username + ", roles=" + roles + ", email="
-				+ email + ", password=" + password + ", OTP=" + OTP + ", status=" + status + ", occupation="
-				+ occupation + ", location=" + location + ", bio=" + bio + "]";
+				+ email + ", password=" + password + ", occupation=" + occupation + ", location=" + location + ", bio="
+				+ bio + ", OTP=" + OTP + ", activated=" + activated + "]";
 	}
+
 }
+	
+	

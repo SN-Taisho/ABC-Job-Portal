@@ -6,8 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ThreadController {
 
+//	THREADS
+	@GetMapping("/create-thread")
+	public String createThreadPage() {
+		return "Threads/Post";
+	}
+	
 	@GetMapping("/thread")
-	public String threadPage() {
+	public String viewThreadPage() {
 		return "Threads/Thread";
 	}
 }

@@ -15,7 +15,7 @@
 		<section class="tb-form flex-col">
 
 		<h3 class="form-heading">Sign Up</h3>
-		<span id="error-text" class="form-error"></span>
+		<span id="error-text" class="form-error">${error_msg}</span>
 		<sf:form id="registrationForm" class="form-card" autocomplete="off" onsubmit="validateRegistration(event)"
 			action="sign-up" method="post" modelAttribute="user">
 

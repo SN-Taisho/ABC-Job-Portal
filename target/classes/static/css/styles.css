@@ -3,6 +3,7 @@
 /* --------- */
 /* Variables */
 /* --------- */
+
 :root {
 	/* Colors */
 	--primary: #7f5af0;
@@ -24,7 +25,7 @@
 	--hFont: verdana;
 	--pFont: sans-serif;
 	
-	/* Spacing */
+	/* Changeable Spacing */
 	--xl: 5rem;
 	--l: 4rem;
 	--m: 3rem;
@@ -289,6 +290,43 @@ input:-webkit-autofill:active{
 	-moz-text-decoration-color: var(--primary);
 }
 
+/* ----- Modal Utility Classes ----- */
+.modal {
+	background-color: var(--bgDark);
+	border: 5px solid var(--secondary);
+	border-radius: 10px;
+	height: 500px;
+	margin: 7rem auto;
+	width: 325px;
+}
+.modal::backdrop {
+	background-color: #2e2828;
+	opacity: .5;
+}
+.modal-heading {
+	color: var(--white);
+	font-family: var(--hFont);
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+}
+.modal-close {
+	background-color: var(--danger);
+	border: none;
+	border-radius: 5px;
+	color: var(--bgDark);
+	cursor: pointer;
+	font-size: 2rem;
+	padding: 3px;
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+	transition: ease-out 0.3s;
+}
+.modal-close:hover {
+	color: var(--white);
+}
+
 /* ----- Public Pages Utility Classes ----- */
 .pub-heading {
 	color: var(--white);
@@ -373,12 +411,14 @@ input:-webkit-autofill:active{
 .nav-menu {
 	background-color: var(--bgLight);
 	border-radius: 0rem 0rem 0rem 5px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	height: fit-content;
 	position: fixed;
 	padding: var(--xs) 0rem var(--tiny);
 	right: -300px;
 	width: 300px;
 	transition: ease-out 0.2s;
+	z-index: 4;
 }
 .nav-menu.alt {
 	border-top: 3px solid var(--white);
@@ -425,6 +465,11 @@ input:-webkit-autofill:active{
 	position: fixed;
 	top: 0px;
 	width: 100%;
+	z-index: 5;
+	
+	webkit-box-shadow: 0 4px 4px -2px #1a1a1a;
+   -moz-box-shadow: 0 4px 4px -2px #1a1a1a;
+        box-shadow: 0 4px 4px -2px #1a1a1a;
 }
 #navbar.alt {
 	height: 70px;

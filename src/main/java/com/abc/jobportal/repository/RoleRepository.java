@@ -1,5 +1,6 @@
 package com.abc.jobportal.repository;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,6 @@ public interface RoleRepository extends JpaRepository<Role, Long>{
 	@Query( "select r from Role r where r.name in :roles" )
 	Set<Role> findBySpecificRoles(@Param("roles") String role);
 	
+	@Query( value = "select r from Role r where r.id > 1" )
+	List<Role> findRoles();
 }

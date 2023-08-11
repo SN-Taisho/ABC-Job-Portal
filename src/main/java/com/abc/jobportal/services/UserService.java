@@ -31,11 +31,27 @@ public class UserService {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 		
-		user.setRoles(new HashSet<>(roleRepo.findBySpecificRoles("Users")));
+		user.setRoles(new HashSet<>(roleRepo.findBySpecificRoles("User")));
 		
 		userRepo.save(user);
 		
 		return "User saved successfully";
+	}
+	
+	public Boolean activate(String username) {
+		User user = userRepo.findByUsername(username);
+		
+		if (user == null || user.isActivated()) {
+			return false;
+		}
+		else {
+			userRepo.activate(user.getId());
+			return true;
+		}
+	}
+	
+	public User findUsername(String username) {
+		return userRepo.findByUsername(username);
 	}
 	
 	public User findLoginUser(String username) {
