@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
 
 <!-- paired navbar -->
 <jsp:include page="../public-navbar.jsp">
@@ -18,7 +16,7 @@
 		<section class="tb-form flex-col">
 
 		<h3 class="form-heading">Log In</h3>
-		<span class="form-error"></span>
+		<span class="form-error">${error_msg}</span>
 		
 		<c:url var="post_url" value="/login"></c:url>
 		
@@ -28,11 +26,11 @@
 				value="${_csrf.token}" />
 			
 			<label class="input-group flex-col">Username <input type="text" name="username"
-				required placeholder="e.g. jdoe" autocomplete="false"/>
+				required placeholder="e.g. jdoe" autocomplete="false" maxlength="16"/>
 			</label>
 			
 			<label class="input-group flex-col">Password <input type="password" name="password"
-				required placeholder="e.g. johndoe01" autocomplete="off"/>
+				required placeholder="e.g. johndoe01" autocomplete="off" maxlength="14"/>
 			</label>
 
 			<div class="form-forgot-pass">

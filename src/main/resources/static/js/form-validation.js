@@ -10,12 +10,13 @@ const bgDark = "#16161a";
 // FIELD TAGS
 const regForm = document.getElementById("registrationForm");
 const emailForm = document.getElementById("emailForm");
-// const codeForm = document.getElementById("codeForm");
+const resetForm = document.getElementById("resetForm");
 
 const fullname = document.getElementById("fullname");
 const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
+const pConfirmation = document.getElementById("passwordConfirmation");
 
 // const code = document.getElementById("code");
 
@@ -95,15 +96,46 @@ function validateEmailForm(event) {
 	}
 }
 
+// VALIDATE RESET PASSWORD ON SUBMIT
+function validateResetForm(event) {
+	
+	event.preventDefault();
+	
+	if (password.value.length < 5) {
+        password.style.borderColor = error;
+        errorText.innerText = "Please enter a password longer than 5 characters";
+        password.focus();
+        return false;
+    }
+    else if (!numberRegex.test(password.value)) {
+        password.style.borderColor = error;
+        errorText.innerText = "Please enter a password containing at least one number";
+        password.focus();
+        return false;
+    }
+    else if (password.value != pConfirmation.value) {
+    	pConfirmation.style.borderColor = error;
+        errorText.innerText = "Passwords don't match";
+        password.focus();
+        return false;
+    }
+    // FORM FULLY VALIDATED
+    else {
+        resetForm.submit();
+    }
+}
+
 /*----------  ON CHANGE VALIDATION  ----------*/
 
 // FULLNAME
 function validateFullname() {
     if (fullname.value.length < 3) {
         fullname.style.borderColor = error;
-    } else if (numberRegex.test(fullname.value)) {
+    } 
+    else if (numberRegex.test(fullname.value)) {
         fullname.style.borderColor = error;
-    } else {
+    } 
+    else {
     	errorText.innerText = "";
         fullname.style.borderColor = success;
     }
@@ -112,7 +144,8 @@ function validateFullname() {
 function validateUsername() {
     if (username.value.length < 3) {
         username.style.borderColor = error;
-    } else {
+    } 
+    else {
     	errorText.innerText = "";
         username.style.borderColor = success;
     }
@@ -121,7 +154,8 @@ function validateUsername() {
 function validateEmail() {
     if (!emailRegex.test(email.value)) {
         email.style.borderColor = error;
-    } else {
+    } 
+    else {
     	errorText.innerText = "";
         email.style.borderColor = success;
     }
@@ -136,6 +170,16 @@ function validatePassword() {
     }
     else {
     	errorText.innerText = "";
-        password.style.borderColor = success;
+    	password.style.borderColor = success;
     }
+}
+//	PASSWORD CONFIRMATION
+function validatePConfirmation() {
+	if (password.value != pConfirmation.value) {
+    	pConfirmation.style.borderColor = error;
+	}
+	else {
+		errorText.innerText = "";
+		pConfirmation.style.borderColor = success;
+	}
 }

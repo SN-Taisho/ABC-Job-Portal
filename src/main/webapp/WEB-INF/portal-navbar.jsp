@@ -52,5 +52,11 @@
 			<li><a href="/signup">Job</a></li>
 			<li><a href="/my-profile">Profile</a></li>
 			<li><a href="/search">Search</a></li>
+			<form action="logout" method="post">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> 
+					<input type="submit" name="Logout"
+					value="Logout" class="logout-btn btnAnimation" />
+			</form>
 		</ul>
 	</nav>

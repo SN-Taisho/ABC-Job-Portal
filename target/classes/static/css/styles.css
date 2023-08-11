@@ -452,7 +452,18 @@ input:-webkit-autofill:active{
 	color: var(--primary);
 	transform: scale(1.05);
 }
- 
+
+.logout-btn {
+	background-color: var(--danger);
+	border: none;
+	border-radius: 5px;
+	color: var(--white);
+	cursor: pointer;
+	font-family: var(--hFont);
+	font-size: 1.25rem;
+	font-weight: bold;
+	padding: var(--tiny) var(--xs);
+}
  
 /* --------- */
 /* Specifics */
@@ -466,13 +477,12 @@ input:-webkit-autofill:active{
 	top: 0px;
 	width: 100%;
 	z-index: 5;
-	
-	webkit-box-shadow: 0 4px 4px -2px #1a1a1a;
-   -moz-box-shadow: 0 4px 4px -2px #1a1a1a;
-        box-shadow: 0 4px 4px -2px #1a1a1a;
 }
 #navbar.alt {
 	height: 70px;
+	webkit-box-shadow: 0 6px 4px -2px #1a1a1a;
+   	-moz-box-shadow: 0 6px 4px -2px #1a1a1a;
+    box-shadow: 0 6px 4px -2px #1a1a1a;
 }
 #navbarLeft {
 	border-radius: 5px;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
 <!-- paired navbar -->
 <jsp:include page="../public-navbar.jsp">
@@ -11,13 +12,14 @@
 	<section class="tb-form flex-col">
 
 		<h3 class="form-heading">OTP<br>Verification Code</h3>
-		<span id="error-text" class="form-error"></span>
-		<form id="otpForm" class="form-card" autocomplete="on" onsubmit="validateOTPForm(event)">
+		<span id="error-text" class="form-error">${error_msg}</span>
+		<sf:form id="otpForm" class="form-card" autocomplete="on" onsubmit="validateOTPForm(event)" method="post" action="verify_identity">
 			
 			<label class="input-group flex-col text-align-center">
 			Please enter the verification code sent to your email below
 				
-				<input id="fullOTP" type="hidden" maxlength="6" autocomplete="off">
+				<input type="hidden" autocomplete="off" name="email" value="${email}">
+				<input id="fullOTP" type="hidden" maxlength="6" autocomplete="off" name="OTP">
 				
 				<div class="otp-container justify-center" style="margin: 0.5rem 0rem;">
 				
@@ -42,9 +44,9 @@
 				</div>
 			</label>
 
-			<button class="submit-button" style="margin-bottom: var(--s);">Verify</button>
+			<button type="submit" class="submit-button" style="margin-bottom: var(--s);">Verify</button>
 
-		</form>
+		</sf:form>
 	</section>
 
 	<div class="tb-image disappear">

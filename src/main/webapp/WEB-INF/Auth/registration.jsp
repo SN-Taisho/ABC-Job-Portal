@@ -17,26 +17,26 @@
 		<h3 class="form-heading">Sign Up</h3>
 		<span id="error-text" class="form-error">${error_msg}</span>
 		<sf:form id="registrationForm" class="form-card" autocomplete="off" onsubmit="validateRegistration(event)"
-			action="sign-up" method="post" modelAttribute="user">
+			action="sign_up" method="post" modelAttribute="user">
 
 				<label class="input-group flex-col">Full Name <sf:input id="fullname" type="text" 
 			required="true" placeholder="e.g. John Doe" autocomplete="off" onkeyup="validateFullname()"
-			name="fullname" path="fullname" />
+			name="fullname" path="fullname" maxlength="50"/>
 			</label> 
 			
 			<label class="input-group flex-col">Username <sf:input id="username" type="text"
 			required="true" placeholder="e.g. JohnDoe01" autocomplete="off" onkeyup="validateUsername()"
-			name="username" path="username" />
+			name="username" path="username" maxlength="16"/>
 			</label> 
 			
 			<label class="input-group flex-col">Email <sf:input id="email" type="email"
 			required="true" placeholder="example@email.com" autocomplete="off" onkeyup="validateEmail()"
-			name="email" path="email" />
+			name="email" path="email" maxlength="255"/>
 			</label>
 			
 			<label class="input-group flex-col">Password <sf:input id="password" type="password"
-			required="true" placeholder="e.g. JohnDoe2001" autocomplete="off" onkeyup="validatePassword()"
-			name="password" path="password" />
+			required="true" placeholder="e.g. JohnDoe1" autocomplete="off" onkeyup="validatePassword()"
+			name="password" path="password" maxlength="14"/>
 			</label>
 
 

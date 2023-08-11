@@ -17,7 +17,7 @@
 			few clicks.<br> <br>Don't miss this chance and join ABC Job
 			Portal today!
 		</p>
-		<a href="/login" class="pub-link btnAnimation">Login now!</a>
+		<a href="/signup" class="pub-link btnAnimation">Sign up now!</a>
 	</div>
 
 </main>

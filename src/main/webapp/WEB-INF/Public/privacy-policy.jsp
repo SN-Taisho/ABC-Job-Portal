@@ -32,11 +32,13 @@
 			facilitate the job applications processes upon applying on a job post
 			on ABC Job Portal</p>
 
+		<hr class="divider" style="margin-bottom: var(--s);">
+
 		<h4 class="pub-subheading">Employers and Recruiters</h4>
 		<p class="pub-paragraph">During the job application process
 			relevant personal information will be shared to potential employers
 			or recruiters.</p>
-			
+
 		<hr class="divider" style="margin-bottom: var(--s);">
 
 		<h4 class="pub-subheading">Legal Compliance</h4>
@@ -50,6 +52,8 @@
 		<p class="pub-paragraph">We enforce industry-standard security
 			measures to safeguard your personal information from unauthorized
 			access, disclosure, manipulation, or destruction</p>
+
+		<hr class="divider" style="margin-bottom: var(--s);">
 
 		<h4 class="pub-subheading">Account Settings</h4>
 		<p class="pub-paragraph">You can change or review your account
