@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- paired navbar -->
 <jsp:include page="../public-navbar.jsp">
 	<jsp:param value="Login" name="HTMLtitle"/>
 </jsp:include>

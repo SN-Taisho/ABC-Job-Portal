@@ -241,4 +241,12 @@ public class AuthController {
 	public String paswordChanged() {
 		return "Auth/password-success";
 	}
+	
+//	-------------
+//	ACCESS DENIED
+//	-------------
+	@GetMapping("/access-denied")
+	public String accessDeniedPage() {
+		return "Public/access-denied";
+	}
 }

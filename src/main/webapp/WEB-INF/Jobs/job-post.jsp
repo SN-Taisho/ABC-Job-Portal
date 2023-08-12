@@ -3,7 +3,7 @@
 
 <!-- Portal NavBar -->
 <jsp:include page="../portal-navbar.jsp">
-	<jsp:param value="Thread" name="HTMLtitle" />
+	<jsp:param value="Job Post" name="HTMLtitle" />
 </jsp:include>
 
 <main class="single-main">
@@ -17,9 +17,6 @@
 		<span class="post-date">Aug 08, 2023</span> 
 		<img class="post-img"
 			src="https://placehold.co/600x400" width="600" />
-
-		<h5 class="post-heading">Post Heading</h5>
-
 		<p class="post-paragraph">Post paragraph</p>
 
 	</div>

@@ -8,9 +8,9 @@
 
 <main class="default-main">
 
-	<jsp:include page="SideProfile.jsp"></jsp:include>
+	<jsp:include page="side-profile.jsp"></jsp:include>
 
-	<jsp:include page="PostArea.jsp"></jsp:include>
+	<jsp:include page="post-area.jsp"></jsp:include>
 
 </main>
 

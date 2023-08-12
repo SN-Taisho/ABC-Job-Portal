@@ -1,7 +1,5 @@
 <div class="posts-container">
 
-	<a class="create-post-btn" href="/create-post">Create Post</a>
-
 	<div class="post-card">
 		<a class="post-op" href="profile"> <img class="post-profile-img"
 			src="images/Profile.png" width="50" />

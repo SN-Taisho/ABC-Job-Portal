@@ -7,10 +7,9 @@
 
 	<div class="pub-card">
 		<img src="svgs/password-success.svg" alt="svg">
-		<h3 class="pub-heading confirmation">Password Changed</h3>
-		<p class="pub-paragraph text-align-center">Your password was been successfully
-			changed, you may now login using the new password</p>
-		<a href="/login" class="pub-link btnAnimation">Login now!</a>
+		<h3 class="pub-heading danger">Access Denied</h3>
+		<p class="pub-paragraph text-align-center">You do not have access to this page. Please return to the home page</p>
+		<a href="/login" class="pub-link alt btnAnimation">Return Home</a>
 	</div>
 
 </main>

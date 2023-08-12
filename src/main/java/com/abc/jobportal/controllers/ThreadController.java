@@ -9,11 +9,11 @@ public class ThreadController {
 //	THREADS
 	@GetMapping("/create-thread")
 	public String createThreadPage() {
-		return "Threads/Post";
+		return "Threads/create-thread";
 	}
 	
 	@GetMapping("/thread")
 	public String viewThreadPage() {
-		return "Threads/Thread";
+		return "Threads/thread";
 	}
 }

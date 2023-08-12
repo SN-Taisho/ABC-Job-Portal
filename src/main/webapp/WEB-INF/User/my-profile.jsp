@@ -20,14 +20,12 @@
 		</div>
 		
 		<div class="profile-actions">
-			<a class="action-btn" href="/edit-profile">Create Post</a>
+			<a class="action-btn" href="/create-post">Create Post</a>
 			<a class="action-btn" href="/edit-profile">Add Education</a>
 			<a class="action-btn" href="/edit-profile">Add Experience</a>
 			<button id="openEditProfile" class="action-btn" href="/edit-profile" style="background-color: var(--tertiary)">Edit Profile</button>
 		</div>
-
 	</div>
-
 
 	<div class="info-container">
 		<div class="info-section">
@@ -36,8 +34,8 @@
 				<h6 class="mc-heading">Software Engineer at IBM</h6>
 				<p>4 Years</p>
 				<p>2019-2023</p>
-
 			</div>
+			
 			<div class="mini-card">
 				<h6 class="mc-heading">Software Engineer at IBM</h6>
 				<p>4 Years</p>

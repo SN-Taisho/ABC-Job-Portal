@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
-<!-- paired navbar -->
 <jsp:include page="../public-navbar.jsp">
 	<jsp:param value="Email Verification" name="HTMLtitle"/>
 </jsp:include>

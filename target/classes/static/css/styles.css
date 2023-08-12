@@ -338,7 +338,11 @@ input:-webkit-autofill:active{
 	text-align: center;
 }
 .pub-heading.confirmation {
-	color: var(--tertiary);
+	color: var(--success);
+}
+
+.pub-heading.danger {
+	color: var(--danger);
 }
 
 .pub-subheading {
@@ -385,6 +389,10 @@ input:-webkit-autofill:active{
 	padding: 0.5rem 1rem;
 	text-decoration: none;
 	text-transform: capitalize;
+}
+
+.pub-link.alt {
+	background-color: var(--danger);
 }
 
 .pub-date {
@@ -644,7 +652,7 @@ footer p {
 
 /* Contact Us */
 #contactContainer {
-	gap: var(--s);
+	gap: var(--tiny);
 }
 .contact-card {
 	background-color: var(--bgDark);
