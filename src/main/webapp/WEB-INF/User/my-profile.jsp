@@ -20,10 +20,10 @@
 		</div>
 		
 		<div class="profile-actions">
-			<a class="action-btn" href="/create-post">Create Post</a>
-			<a class="action-btn" href="/edit-profile">Add Education</a>
-			<a class="action-btn" href="/edit-profile">Add Experience</a>
-			<button id="openEditProfile" class="action-btn" href="/edit-profile" style="background-color: var(--tertiary)">Edit Profile</button>
+			<a class="action-btn" href="/create-thread">Create a thread</a>
+			<button id="openAddExp" class="action-btn">Add Experience</button>
+			<button id="openAddEdu" class="action-btn">Add Education</button>
+			<button id="openEditProfile" class="action-btn" style="background-color: var(--tertiary)">Edit Profile</button>
 		</div>
 	</div>
 
@@ -102,54 +102,148 @@
 
 <dialog id="editProfileModal" class="modal">
 
-	<div class="align-center error-popup">
-		<span class="material-icons" style="color: var(--danger);">error</span>
-		<p id="error-text" class="pFont error-text"></p>
-		<button class="btnAnimation icon material-icons"
-			onclick="closeFormError()">close</button>
-	</div>
-
 	<h3 class="modal-heading">Edit Profile</h3>
+	<span class="form-error">error</span>
+	
 	<form id="editProfileForm" class="align-center flex-col form"
 		onsubmit="validateEditProfile(event)">
 		
-		<label class="input-group flex-col">Fullname <input id="fullname" type="text"
-			required="true" placeholder="e.g. John Doe" autocomplete="off" onkeyup="validateFullname()"
-			name="fullname" path="fullname"  style="background-color: var(--bgLight);"/>
-			</label> 
+		<label class="input-group flex-col">Fullname* <input id="fullname" type="text"
+			required="true" placeholder="This field cannot be left blank" autocomplete="off" onkeyup="validateFullname()"
+			name="fullname" path="fullname"  />
+		</label> 
 		
 		<label class="input-group flex-col">Occupation <input id="" type="text"
-			required="true" placeholder="e.g. Software Engineer" autocomplete="off" onkeyup="validateFullname()"
-			name="occupation" path="occupation"  style="background-color: var(--bgLight);"/>
-			</label>
+			placeholder="Leave blank if unemployed" autocomplete="off"
+			name="occupation" path="occupation"  />
+		</label>
 		
 		<label class="input-group flex-col">Location <input id="" type="text"
-			required="true" placeholder="e.g. JohnDoe01" autocomplete="off" onkeyup="validateFullname()"
-			name="location" path="location"  style="background-color: var(--bgLight);"/>
-			</label>
-		
-		<label class="input-group flex-col">Bio <input id="" type="text"
-			required="true" placeholder="e.g. JohnDoe01" autocomplete="off" onkeyup="validateFullname()"
-			name="bio" path="bio"  style="background-color: var(--bgLight);"/>
-			</label>
+			placeholder="City/State, Country" autocomplete="off"
+			name="location" path="location"  />
+		</label> 
+			
+			
+		<label class="input-group flex-col">Bio <textarea class="textarea"
+			placeholder="Tell everyone about yourself" rows="3" name="bio"
+			path="bio"></textarea>
+		</label>
 
-		<button class="submit-btn btnAnimation"
+	<button class="submit-button btnAnimation"
 			style="background-color: var(--success);" type="submit">Save</button>
 	</form>
 	<button id="closeEditProfile" class="material-icons modal-close">close</button>
-	</dialog>
-<script>
-const modal = document.querySelector("#editProfileModal");
-const openModal = document.querySelector("#openEditProfile");
-const closeModal = document.querySelector("#closeEditProfile");
+</dialog>
 
-openModal.addEventListener("click", () => {
-	  modal.showModal();
+<dialog id="addExpModal" class="modal">
+
+	<h3 class="modal-heading" style="margin-bottom: 0.5rem;">Add<br>Experience</h3>
+	
+	<form id="editProfileForm" class="align-center flex-col form"
+		onsubmit="validateEditProfile(event)">
+		
+		<label class="input-group flex-col">Occupation <input type="text"
+			required="true" placeholder="e.g. Software Engineer" autocomplete="off"
+			name="" path=""/>
+		</label> 
+		
+		<label class="input-group flex-col">Company <input type="text"
+			required="true" placeholder="e.g. Google" autocomplete="off"
+			name="" path=""/>
+		</label>
+		
+		<label class="input-group flex-col">Start Year <input type="text"
+			required="true" placeholder="e.g. 2020" autocomplete="off"
+			name="" path=""/>
+		</label> 
+		
+		<label class="input-group flex-col">End Year <input type="text"
+			required="true" placeholder="e.g. 2021" autocomplete="off"
+			name="" path=""/>
+		</label> 
+
+	<button class="submit-button btnAnimation"
+			style="background-color: var(--success);" type="submit">Save</button>
+	</form>
+	<button id="closeAddExp" class="material-icons modal-close">close</button>
+</dialog>
+
+
+<dialog id="addEduModal" class="modal">
+
+	<h3 class="modal-heading" style="margin-bottom: 0.5rem;">Add<br>Education</h3>
+	
+	<form id="editProfileForm" class="align-center flex-col form"
+		onsubmit="validateEditProfile(event)">
+		
+		<label class="input-group flex-col">Course <input type="text"
+			required="true" placeholder="e.g. BDSE" autocomplete="off"
+			name="" path=""/>
+		</label>
+		
+		<label class="input-group flex-col">School <input type="text"
+			required="true" placeholder="e.g. Lithan Academy" autocomplete="off"
+			name="" path=""/>
+		</label>
+		
+		<label class="input-group flex-col">Start Year <input type="text"
+			required="true" placeholder="e.g. 2020" autocomplete="off"
+			name="" path=""/>
+		</label> 
+		
+		<label class="input-group flex-col">End Year <input type="text"
+			required="true" placeholder="e.g. 2021" autocomplete="off"
+			name="" path=""/>
+		</label> 
+
+	<button class="submit-button btnAnimation"
+			style="background-color: var(--success);" type="submit">Save</button>
+	</form>
+	<button id="closeAddEdu" class="material-icons modal-close">close</button>
+</dialog>
+
+<script>
+const editProfileM = document.querySelector("#editProfileModal");
+const openEditProfile = document.querySelector("#openEditProfile");
+const closeEditProfile = document.querySelector("#closeEditProfile");
+
+openEditProfile.addEventListener("click", () => {
+	editProfileM.showModal();
 	});
 
-	closeModal.addEventListener("click", () => {
-	  modal.close();
+closeEditProfile.addEventListener("click", () => {
+		editProfileM.close();
 	});
 </script>
+
+<script>
+const addExpM = document.querySelector("#addExpModal");
+const openAddExp = document.querySelector("#openAddExp");
+const closeAddExp = document.querySelector("#closeAddExp");
+
+openAddExp.addEventListener("click", () => {
+	addExpM.showModal();
+	});
+
+closeAddExp.addEventListener("click", () => {
+		addExpM.close();
+	});
+</script>
+
+<script>
+const addEduM = document.querySelector("#addEduModal");
+const openAddEdu = document.querySelector("#openAddEdu");
+const closeAddEdu = document.querySelector("#closeAddEdu");
+
+openAddEdu.addEventListener("click", () => {
+	addEduM.showModal();
+	});
+
+closeAddEdu.addEventListener("click", () => {
+		addEduM.close();
+	});
+</script>
+
+<script type="text/javascript" src="js/form-validation.js"></script>
 
 <jsp:include page="../footer.jsp"></jsp:include>

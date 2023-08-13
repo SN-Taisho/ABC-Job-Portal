@@ -91,6 +91,43 @@
 	outline-offset: 5px;
 }
 
+/* ----- Create Post Utility ----- */
+.create-post {
+	background-color: var(--bgLight);
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	gap: var(--tiny);
+	margin: 0rem 1rem;
+	max-width: 600px;
+	padding: 1rem 0.5rem;
+	width: 85%
+}
+
+.create-form {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
+}
+
+.create-form .input-group {
+	width: 90%;
+}
+
+.create-form .textarea {
+	resize: none;
+}
+
+/* Image Preview */
+.image-preview {
+	width: inherit;
+}
+.image-preview img {
+	border-radius: 5px;
+}
+
 /* ----- Posts Area ----- */
 .posts-container {
 	align-items: center;

@@ -34,6 +34,11 @@ public class UserController {
 		return "User/my-profile";
 	}
 	
+	@GetMapping("/view-profile")
+	public String viewUserProfile() {
+		return "User/view-profile";
+	}
+	
 	@GetMapping("/my-profile")
 	public String viewProfile(Principal principal, Model model) {
 		

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- paired navbar -->
 <jsp:include page="../public-navbar.jsp">
 	<jsp:param value="Home" name="HTMLtitle" />
 </jsp:include>
@@ -19,7 +18,7 @@
 		</p>
 
 		<button id="joinUsBtn" class="trans-ease-out"
-			onclick="window.location='<%=request.getContextPath()%>/signup'">Join
+			onclick="window.location.href='/signup'">Join
 			Us</button>
 	</div>
 
@@ -30,4 +29,3 @@
 </main>
 
 <jsp:include page="../footer.jsp"></jsp:include>
-
