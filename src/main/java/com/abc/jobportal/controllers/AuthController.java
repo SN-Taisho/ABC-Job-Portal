@@ -2,6 +2,8 @@ package com.abc.jobportal.controllers;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -18,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.abc.jobportal.entity.Role;
+import com.abc.jobportal.entity.Thread;
 import com.abc.jobportal.entity.User;
 import com.abc.jobportal.services.EmailService;
+import com.abc.jobportal.services.ThreadService;
 import com.abc.jobportal.services.UserService;
 import com.abc.jobportal.ServletRequest.Request;
 
@@ -31,6 +35,9 @@ public class AuthController {
 	
 	@Autowired
 	EmailService emailService;
+	
+	@Autowired
+	ThreadService threadService;
 	
 //	------------
 //	REGISTRATION
@@ -79,7 +86,9 @@ public class AuthController {
 		return "Auth/registration";
     }
 	
-//	OTP CODE VERIFICATION (REGISTRATION)
+//	----------------
+//	REGISTRATION OTP
+//	----------------
 	@GetMapping("/verify-registration")
 	public String registrationVerificationPage(@Param("username") String username, Model model) {
 		
@@ -197,6 +206,9 @@ public class AuthController {
 		}
 	}
 	
+//	-------------------
+//	FORGOT PASSWORD OTP
+//	-------------------
 	@GetMapping("/verify-identity")
 	public String passwordResetOTPPage(@Param("email") String email, Model model) {
 		User user = userService.findEmail(email);
@@ -248,5 +260,66 @@ public class AuthController {
 	@GetMapping("/access-denied")
 	public String accessDeniedPage() {
 		return "Public/access-denied";
+	}
+
+//	-------
+//	PROFILE
+//	-------
+	@GetMapping("/my-profile")
+	public String viewProfile(Principal principal, Model model) {
+		
+		String username = principal.getName();
+		User userdata = userService.findLoginUser(username);
+
+		String[] role = userdata.getRoles().stream().map(Role::getName).toArray(String[]::new);
+		String userRole = role[0];
+		String[] roleNames = userService.getAllRoles().stream().map(Role::getName).toArray(String[]::new);
+		
+		List<Thread> threads = threadService.getAllThreads();
+		model.addAttribute("threads", threads);
+		
+		List<User> user = new ArrayList<User>();
+		user.add(userdata);
+		model.addAttribute("user", user);
+
+		for (String roleName : roleNames) {
+			if (roleName == userRole && userRole.equalsIgnoreCase("Admin")) {
+				adminProfile();
+				return userRole + "/profile";
+			}
+			if (roleName == userRole && userRole.equalsIgnoreCase("User")) {
+				usersProfile(model, principal);
+				return userRole + "/profile";
+			}
+		}
+		return "redirect:access-denied";
+	}
+	
+	public void adminProfile() {
+		System.out.println("View profile as Administrator");
+	}
+
+	public void usersProfile(Model model, Principal principal) {
+		System.out.println("View profile as User");
+	}
+	
+	@PostMapping("update_profile")
+	public String updateProfileInfo(Principal principal, @ModelAttribute("user") User u, RedirectAttributes redir) {
+		
+		String username = principal.getName();
+		
+		User user = userService.findLoginUser(username);
+		
+		user.setFullname(u.getFullname());
+		user.setOccupation(u.getOccupation());
+		user.setLocation(u.getLocation());
+		user.setBio(u.getBio());
+		
+		userService.update(user);
+		
+		String success_msg = "Profile has been updated";
+		
+		redir.addFlashAttribute("success_msg", success_msg);
+		return "redirect:my-profile";
 	}
 }

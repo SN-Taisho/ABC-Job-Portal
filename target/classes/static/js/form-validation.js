@@ -11,6 +11,7 @@ const bgDark = "#16161a";
 const regForm = document.getElementById("registrationForm");
 const emailForm = document.getElementById("emailForm");
 const resetForm = document.getElementById("resetForm");
+const editProfileForm = document.getElementById("editProfileForm");
 
 const fullname = document.getElementById("fullname");
 const username = document.getElementById("username");
@@ -122,6 +123,26 @@ function validateResetForm(event) {
     // FORM FULLY VALIDATED
     else {
         resetForm.submit();
+    }
+}
+
+//VALIDATE EDIT PROFILE
+function validatedEditProfile(event) {
+	
+	event.preventDefault();
+	
+	if (fullname.value.length < 3) {
+        fullname.style.borderColor = error;
+        errorText.innerText = "Fullname must be at least 3 characters";
+        fullname.focus();
+    } 
+    else if (numberRegex.test(fullname.value)) {
+        fullname.style.borderColor = error;
+        errorText.innerText = "Fullname cannot contain a number";
+        fullname.focus();
+    }
+    else {
+    	editProfileForm.submit();
     }
 }
 

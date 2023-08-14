@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PublicController {
 
+//	------------
+//	Public Pages
+//	------------
 	@GetMapping("/")
 	public String homeRedirect() {
 		return "Public/landing";
@@ -16,7 +19,6 @@ public class PublicController {
 		return "Public/landing";
 	}
 	
-//	Other pages
 	@GetMapping("/about-us")
 	public String aboutUsPage() {
 		return "Public/about-us";

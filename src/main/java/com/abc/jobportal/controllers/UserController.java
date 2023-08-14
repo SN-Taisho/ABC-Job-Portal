@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.abc.jobportal.entity.Role;
+import com.abc.jobportal.entity.Thread;
 import com.abc.jobportal.entity.User;
+import com.abc.jobportal.services.ThreadService;
 import com.abc.jobportal.services.UserService;
 
 @Controller
@@ -19,8 +21,26 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	ThreadService threadService;
+	
 	@GetMapping("/homepage")
-	public String userHomepage() {
+	public String userHomepage(Principal principal,Model model) {
+		
+		String username = principal.getName();
+		User userdata = userService.findLoginUser(username);
+
+		String[] role = userdata.getRoles().stream().map(Role::getName).toArray(String[]::new);
+		String userRole = role[0];
+		String[] roleNames = userService.getAllRoles().stream().map(Role::getName).toArray(String[]::new);
+
+		List<User> user = new ArrayList<User>();
+		user.add(userdata);
+		model.addAttribute("user", user);
+		
+		List<Thread> threads = threadService.getAllThreads();
+		model.addAttribute("threads", threads);
+		
 		return "User/homepage";
 	}
 	
@@ -37,36 +57,5 @@ public class UserController {
 	@GetMapping("/view-profile")
 	public String viewUserProfile() {
 		return "User/view-profile";
-	}
-	
-	@GetMapping("/my-profile")
-	public String viewProfile(Principal principal, Model model) {
-		
-		String username = principal.getName();
-
-		User userdata = userService.findLoginUser(username);
-
-		String[] role = userdata.getRoles().stream().map(Role::getName).toArray(String[]::new);
-
-		String userRole = role[0];
-
-		String[] roleNames = userService.getAllRoles().stream().map(Role::getName).toArray(String[]::new);
-
-		List<User> user = new ArrayList<User>();
-		user.add(userdata);
-
-		model.addAttribute("user", user);
-
-		for (String roleName : roleNames) {
-			if (roleName == userRole && userRole.equalsIgnoreCase("Administrator")) {
-				System.out.println("Viewing profile as an Admin");
-				return userRole + "/profile";
-			}
-			if (roleName == userRole && userRole.equalsIgnoreCase("Users")) {
-				System.out.println("Viewing profile as a User");
-				return userRole + "/profile";
-			}
-		}
-		return "redirect:accessdenied";
 	}
 }

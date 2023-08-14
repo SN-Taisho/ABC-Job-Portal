@@ -34,7 +34,7 @@
 
 		<div class="align-center justify-evenly">
 			<ul id="portalNav" class="align-center list-style-none hFont">
-				<li><a href="/job-posts" class="btnAnimation"><span
+				<li><a href="/jobs" class="btnAnimation"><span
 						class="material-icons nav-icons">work</span>Jobs</a></li>
 				<li><a href="/homepage" class="btnAnimation"><span
 						class="material-icons nav-icons">home</span>Home</a></li>
@@ -48,8 +48,8 @@
 
 	<nav class="nav-menu alt">
 		<ul class="nav-menu-links">
-			<li><a href="/home">Home</a></li>
-			<li><a href="/signup">Job</a></li>
+			<li><a href="/homepage">Home</a></li>
+			<li><a href="/jobs">Jobs</a></li>
 			<li><a href="/my-profile">Profile</a></li>
 			<li><a href="/search">Search</a></li>
 			<form action="logout" method="post">

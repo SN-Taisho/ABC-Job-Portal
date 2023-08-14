@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- Portal NavBar -->
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+
 <jsp:include page="../portal-navbar.jsp">
 	<jsp:param value="Create Thread" name="HTMLtitle" />
 </jsp:include>
@@ -9,22 +10,21 @@
 
 	<section class="create-post">
 		<h3 class="form-heading">Create a Thread</h3>
-		<span id="error-text" class="form-error" style="font-size: 1.1rem;">test error</span>
 		
-		<form class="create-form">
+		<sf:form class="create-form" method="post" action="create_thread" modelAttribute="thread">
 		
 			<label class="input-group flex-col">Title <input id="" type="text" 
 			required="true" placeholder="Insert interesting title" autocomplete="off"
-			name="" path=""/>
+			name="title" path="title"/>
 			</label>
 			
-			<label class="input-group flex-col">Content <textarea class="textarea"
-			placeholder="Write about something here" rows="5" name="" path=""></textarea>
+			<label class="input-group flex-col">Content <textarea class="textarea" required="required"
+			placeholder="Write about something here" rows="5" name="content" path="content"></textarea>
 			</label>
 			
 			<button class="submit-button" type="submit" style="border-radius: 10px;">Post</button>
 			
-		</form>
+		</sf:form>
 		
 	</section>
 

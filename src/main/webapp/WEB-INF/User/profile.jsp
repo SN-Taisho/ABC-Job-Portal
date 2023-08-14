@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- Portal NavBar -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+
 <jsp:include page="../portal-navbar.jsp">
 	<jsp:param value="Profile" name="HTMLtitle" />
 </jsp:include>
@@ -12,11 +14,13 @@
 		<img class="profile-photo" src="images/Profile.png" width="100" />
 
 		<div class="profile-details">
-			<h5 class="profile-name">Anzel Ken Sakamoto</h5>
-			<p class="profile-occupation">Current Occupation</p>
-			
-			<p>Ichikawa, Chiba Japan</p>
-			<p>Bio sample paragraph, Software engineering student at Lithan Academy Singapore</p>
+			<c:forEach items="${user}" var="u">
+				<h5 class="profile-name">${u.fullname}</h5>
+				<p class="profile-occupation">${u.occupation}</p>
+				
+				<p>${u.location}</p>
+				<p>${u.bio}</p>
+			</c:forEach>
 		</div>
 		
 		<div class="profile-actions">
@@ -59,54 +63,40 @@
 
 	<div class="posts-container">
 
-		<div class="post-card">
-			<a class="post-op" href="profile"> <img class="post-profile-img"
-				src="images/Profile.png" width="50" />
-				<p>Sample Username</p>
-			</a> <span class="post-date">Aug 08, 2023</span> <img class="post-img"
-				src="https://placehold.co/600x400" width="600" />
+		<c:if test="${not empty threads}">
+		<c:forEach items="${threads}" var="t">
+		
+			<div class="post-card">
+				<a class="post-op" href="view-profile/${t.getUser().getUsername()}"> <img class="post-profile-img"
+					src="images/Profile.png" width="50" />
+					<p>${t.getUser().getFullname()}</p>
+				</a> <span class="post-date">${t.date}</span>
 
-			<h5 class="post-heading">Post Heading</h5>
+				<h5 class="post-heading">${t.title}</h5>
 
-			<p class="post-paragraph">Post paragraph</p>
+				<p class="post-paragraph">${t.content}</p>
 
-			<hr class="divider">
+				<hr class="divider">
 
-			<div class="post-btn-container">
-				<a class="thread-link" href="/thread/1">View Thread</a>
+				<div class="post-btn-container">
+					<a class="thread-link" href="/thread/${t.id}">View Thread</a>
+				</div>
 			</div>
-
-		</div>
-
-		<div class="post-card">
-			<a class="post-op" href="profile"> <img class="post-profile-img"
-				src="images/Profile.png" width="50" />
-				<p>Sample Username</p>
-			</a> <span class="post-date">Aug 08, 2023</span> <img class="post-img"
-				src="https://placehold.co/600x400" width="600" />
-
-			<h5 class="post-heading">Post Heading</h5>
-
-			<p class="post-paragraph">Post paragraph</p>
-
-			<hr class="divider">
-
-			<div class="post-btn-container">
-				<a class="thread-link" href="/thread/1">View Thread</a>
-			</div>
-
-		</div>
+			
+		</c:forEach>
+		</c:if>
+		<c:if test="${empty threads}">
+		</c:if>
 	</div>
-
 </main>
 
 <dialog id="editProfileModal" class="modal">
 
 	<h3 class="modal-heading">Edit Profile</h3>
-	<span class="form-error">error</span>
+	<span id="error-text" class="form-error"></span>
 	
-	<form id="editProfileForm" class="align-center flex-col form"
-		onsubmit="validateEditProfile(event)">
+	<sf:form id="editProfileForm" class="align-center flex-col form" method="post" action="update_profile" modelAttribute="user"
+		onsubmit="validatedEditProfile(event)">
 		
 		<label class="input-group flex-col">Fullname* <input id="fullname" type="text"
 			required="true" placeholder="This field cannot be left blank" autocomplete="off" onkeyup="validateFullname()"
@@ -131,7 +121,7 @@
 
 	<button class="submit-button btnAnimation"
 			style="background-color: var(--success);" type="submit">Save</button>
-	</form>
+	</sf:form>
 	<button id="closeEditProfile" class="material-icons modal-close">close</button>
 </dialog>
 

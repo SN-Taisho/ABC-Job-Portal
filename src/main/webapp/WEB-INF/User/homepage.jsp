@@ -10,7 +10,7 @@
 
 	<jsp:include page="side-profile.jsp"></jsp:include>
 
-	<jsp:include page="post-area.jsp"></jsp:include>
+	<jsp:include page="all-threads.jsp"></jsp:include>
 
 </main>
 
