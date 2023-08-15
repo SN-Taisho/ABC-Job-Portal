@@ -78,6 +78,10 @@ public class UserService {
 		return userRepo.findAll();
 	}
 	
+	public List<User> search(String keyword) {
+		return userRepo.search(keyword);
+	}
+	
 	public void update(User user) {
 		userRepo.save(user);
 		

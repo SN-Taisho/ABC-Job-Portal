@@ -1,26 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="posts-container">
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
-	<div class="post-card">
-		<a class="post-op" href="profile"> <img class="post-profile-img"
-			src="images/Profile.png" width="50" />
-			<p>Sample Username</p>
-		</a> 
-		<span class="post-date">Aug 08, 2023</span> 
+<jsp:include page="../portal-navbar.jsp">
+	<jsp:param value="Profile" name="HTMLtitle" />
+</jsp:include>
+
+<main class="single-main">
+
+	<div class="posts-container">
 		
-		<img class="post-img"
-			src="https://placehold.co/600x400" width="600" />
+		<h3 class="pub-heading" style="text-transform: capitalize;">What employers are looking for</h3>
 
-		<h5 class="post-heading">Post Heading</h5>
+		<c:if test="${not empty jobPosts}">
+			<c:forEach items="${jobPosts}" var="j">
+				<div class="post-card">
+					<a class="post-op" href="profile"> <img
+						class="post-profile-img" src="images/Profile.png" width="50" />
+						<p>${j.getUser().getFullname()}</p>
+					</a> <span class="post-date">${j.date}</span> 
+					
+					<h5 class="post-heading">Occupation: ${j.title} at ${j.company}</h5>
+					<h5 class="post-heading">With a salary of: ${j.salary}</h5>
+					
+					<img class="post-img"
+						src="${j.photoImagePath}" alt="${j.photos}" width="600"/>
 
-		<p class="post-paragraph">Post paragraph</p>
+					<p class="post-paragraph">${j.content}</p>
 
-		<hr class="divider">
+					<hr class="divider">
 
-		<div class="post-btn-container">
-			<a class="thread-link" href="/thread/1">View Thread</a>
-		</div>
+					<div class="post-btn-container">
+						<a class="thread-link" href="/job-post/${j.id}">View Job Post</a>
+					</div>
 
+				</div>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty jobPosts}">
+			<div class="post-card">
+					<h5 class="post-heading" style="text-align: center">No jobs are currently listed</h5>
+				</div>
+		</c:if>
 	</div>
 
-</div>
+</main>
+
+<jsp:include page="../footer.jsp"></jsp:include>

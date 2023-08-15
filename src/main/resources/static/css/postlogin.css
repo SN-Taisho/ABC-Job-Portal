@@ -396,6 +396,39 @@
 	font-size: 1rem;
 }
 
+/* ----- Search ----- */
+.search-bar {
+	align-center;
+	display: flex;
+	width: 95%
+}
+.search-input {
+	background-color: var(--bgLight);
+	border: 2px solid var(--bgLight);
+	border-left: 2px solid var(--primary);
+	border-radius: 0px 5px 5px 0px;
+	color: var(--white);
+	font-family: var(--pFont);
+	font-size: 1rem;
+	letter-spacing: 1px;
+	line-height: 2rem;
+	outline: none;
+	padding: 0.5rem 1rem;
+	width: 85%;
+	transition: ease-out 0.3s;
+}
+.search-input:focus {
+	border: 2px solid var(--primary);
+}
+.search-btn {
+	background-color: var(--primary);
+	border: 2px solid var(--primary);
+	border-radius: 5px 0px 0px 5px;
+	color: var(--white);
+	cursor: pointer;
+	font-size: 2.5rem;
+	width:15%;
+}
 
 /* ------------ */
 /* Breakpoints */

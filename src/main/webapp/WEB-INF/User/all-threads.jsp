@@ -1,6 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
 <div class="posts-container">
+
+	<sf:form class="search-bar" action="search-results" method="get">
+		<button class="search-btn material-icons" type="submit">search</button>
+		<input class="search-input" placeholder="Search" name="keyword" value="${keyword}">
+	</sf:form>
 
 	<a class="create-post-btn" href="/create-thread">Create Thread</a>
 	

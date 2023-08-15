@@ -130,7 +130,6 @@ function validateOTPForm(event) {
 	} else {
 		fullOTP.value = otpCode;
 		form.submit();
-		alert(fullOTP.value);
 	}
 }
 

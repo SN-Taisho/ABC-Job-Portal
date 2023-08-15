@@ -91,7 +91,7 @@ public class JobPostController {
 		List<JobPost> jobPosts = jobPostService.getAllJobPosts();
 		model.addAttribute("jobPosts", jobPosts);
 		
-		return "Jobs/jobs";
+		return "Jobs/job-listing";
 	}
 	
 }

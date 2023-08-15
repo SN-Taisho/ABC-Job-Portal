@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.abc.jobportal.entity.Role;
 import com.abc.jobportal.entity.Thread;
@@ -25,7 +27,7 @@ public class UserController {
 	ThreadService threadService;
 	
 	@GetMapping("/homepage")
-	public String userHomepage(Principal principal,Model model) {
+	public String userHomepage(Principal principal, Model model) {
 		
 		String username = principal.getName();
 		User userdata = userService.findLoginUser(username);
@@ -45,13 +47,22 @@ public class UserController {
 	}
 	
 	@GetMapping("/search")
-	public String userSearch() {
+	public String searchPage() {
 		return "User/search";
 	}
 	
-	@GetMapping("/test-profile")
-	public String profile() {
-		return "User/my-profile";
+	@GetMapping("/search-results")
+	public ModelAndView searchResultsPage(@RequestParam String keyword, Model model, Principal principal) {
+		
+		String username = principal.getName();
+		User user = userService.findLoginUser(username);
+		model.addAttribute("currentUser", user.getUsername());
+		
+		List<User> searchUser = userService.search(keyword);
+		System.out.println(searchUser);
+		
+		model.addAttribute("keyword", keyword);
+		return new ModelAndView("User/search-results", "searchUser", searchUser);
 	}
 	
 	@GetMapping("/view-profile")
