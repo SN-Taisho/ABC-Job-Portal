@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.abc.jobportal.entity.Role;
 import com.abc.jobportal.entity.Thread;
@@ -26,26 +30,32 @@ public class UserController {
 	@Autowired
 	ThreadService threadService;
 	
+	
+//	-------------
+//	User Homepage
+//	-------------
 	@GetMapping("/homepage")
 	public String userHomepage(Principal principal, Model model) {
 		
 		String username = principal.getName();
 		User userdata = userService.findLoginUser(username);
 
-		String[] role = userdata.getRoles().stream().map(Role::getName).toArray(String[]::new);
-		String userRole = role[0];
-		String[] roleNames = userService.getAllRoles().stream().map(Role::getName).toArray(String[]::new);
-
-		List<User> user = new ArrayList<User>();
-		user.add(userdata);
-		model.addAttribute("user", user);
-		
 		List<Thread> threads = threadService.getAllThreads();
 		model.addAttribute("threads", threads);
 		
+		String[] role = userdata.getRoles().stream().map(Role::getName).toArray(String[]::new);
+		String userRole = role[0];
+		String[] roleNames = userService.getAllRoles().stream().map(Role::getName).toArray(String[]::new);
+		
+		List<User> user = new ArrayList<User>();
+		user.add(userdata);
+		model.addAttribute("user", user);
 		return "User/homepage";
 	}
 	
+//	--------------------
+//	Search Functionality
+//	--------------------
 	@GetMapping("/search")
 	public String searchPage() {
 		return "User/search";
@@ -64,9 +74,24 @@ public class UserController {
 		model.addAttribute("keyword", keyword);
 		return new ModelAndView("User/search-results", "searchUser", searchUser);
 	}
+
+//	-----------------
+//	View User Profile
+//	-----------------
 	
-	@GetMapping("/view-profile")
-	public String viewUserProfile() {
+//	WORK IN PPROGRESS
+	@GetMapping("/view-profile/{username}")
+	public String viewUserProfile(@PathVariable(value = "username") String username, Model model) {
+		
+		User userdata = userService.findUsername(username);
+		
+		List<Thread> threads = threadService.getAllThreads();
+		model.addAttribute("threads", threads);
+		
+		List<User> user = new ArrayList<User>();
+		user.add(userdata);
+		model.addAttribute("user", user);
+		
 		return "User/view-profile";
 	}
 }

@@ -22,7 +22,7 @@
 					</a> <span class="post-date">${j.date}</span> 
 					
 					<h5 class="post-heading">Occupation: ${j.title} at ${j.company}</h5>
-					<h5 class="post-heading">With a salary of: ${j.salary}</h5>
+					<h5 class="post-heading">Salary: ${j.salary}</h5>
 					
 					<img class="post-img"
 						src="${j.photoImagePath}" alt="${j.photos}" width="600"/>

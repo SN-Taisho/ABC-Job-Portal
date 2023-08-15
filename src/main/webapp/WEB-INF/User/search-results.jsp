@@ -40,13 +40,15 @@
 				</div>
 			</c:if>
 
-			<c:if test="${count == 0}">
-				<div class="mini-card">
-					<h4 class="mc-heading" style="margin-bottom: 0rem; text-align: center;">No users
-						found</h4>
-				</div>
-			</c:if>
 		</c:forEach>
+		
+		<c:if test="${count == 0}">
+			<div class="mini-card">
+				<h4 class="mc-heading"
+					style="margin-bottom: 0rem; text-align: center;">No users
+					found</h4>
+			</div>
+		</c:if>
 	</c:if>
 
 
