@@ -16,7 +16,8 @@
 	
 	<c:if test="${empty searchUser}">
 		<div class="mini-card">
-			<h4 class="mc-heading">No users found</h4>
+			<h4 class="mc-heading"
+				style="margin-bottom: 0rem; text-align: center;">No users found</h4>
 		</div>
 	</c:if>
 
@@ -24,13 +25,10 @@
 		<c:set var="count" value="0" scope="page" />
 		<c:forEach items="${searchUser}" var="u">
 			
-			<c:if test="${u.username eq currentUser}">
-			</c:if>
-			
 			<c:if test="${u.username ne currentUser}">
 				<c:set var="count" scope="page" value="${count + 1}" />
 				<div class="mini-card">
-					<a class="post-op" href="/view-profile/${u.id}"
+					<a class="post-op" href="/view-profile/${u.username}"
 						style="margin: auto 0rem;"> <img class="post-profile-img"
 						src="images/Profile.png" width="50" />
 						<div>
@@ -44,7 +42,8 @@
 
 			<c:if test="${count == 0}">
 				<div class="mini-card">
-					<h4 class="mc-heading">No users found</h4>
+					<h4 class="mc-heading" style="margin-bottom: 0rem; text-align: center;">No users
+						found</h4>
 				</div>
 			</c:if>
 		</c:forEach>

@@ -7,20 +7,28 @@
 	<jsp:param value="Profile" name="HTMLtitle" />
 </jsp:include>
 
+<c:forEach items="${user}" var="u">
+	<c:set var="fullname" value="${u.fullname}"></c:set>
+	<c:set var="username" value="${u.username}"></c:set>
+	<c:set var="occupation" value="${u.occupation}"></c:set>
+	<c:set var="location" value="${u.location}"></c:set>
+	<c:set var="bio" value="${u.bio}"></c:set>
+</c:forEach>
+
 <main class="single-main">
 
 	<div class="profile">
 		<img class="cover-photo" src="images/CoverPhoto.png" width="920" /> 
 		<img class="profile-photo" src="images/Profile.png" width="100" />
-
+		
+	
+		
 		<div class="profile-details">
-			<c:forEach items="${user}" var="u">
-				<h5 class="profile-name">${u.fullname}</h5>
-				<p class="profile-occupation">${u.occupation}</p>
+				<h5 class="profile-name">${fullname}</h5>
+				<p class="profile-occupation">${occupation}</p>
 				
-				<p>${u.location}</p>
-				<p>${u.bio}</p>
-			</c:forEach>
+				<p>${location}</p>
+				<p>${bio}</p>
 		</div>
 		
 		<div class="profile-actions">
@@ -64,24 +72,34 @@
 	<div class="posts-container">
 
 		<c:if test="${not empty threads}">
+		<c:set var="count" value="0" scope="page" />
 		<c:forEach items="${threads}" var="t">
-		
-			<div class="post-card">
-				<a class="post-op" href="view-profile/${t.getUser().getUsername()}"> <img class="post-profile-img"
-					src="images/Profile.png" width="50" />
-					<p>${t.getUser().getFullname()}</p>
-				</a> <span class="post-date">${t.date}</span>
-
-				<h5 class="post-heading">${t.title}</h5>
-
-				<p class="post-paragraph">${t.content}</p>
-
-				<hr class="divider">
-
-				<div class="post-btn-container">
-					<a class="thread-link" href="/thread/${t.id}">View Thread</a>
+			
+			<c:if test="${t.getUser().getUsername() eq username}">
+				<c:set var="count" scope="page" value="${count + 1}" />
+				<div class="post-card">
+					<a class="post-op" href="view-profile/${t.getUser().getUsername()}"> <img class="post-profile-img"
+						src="images/Profile.png" width="50" />
+						<p>${t.getUser().getFullname()}</p>
+					</a> <span class="post-date">${t.date}</span>
+	
+					<h5 class="post-heading">${t.title}</h5>
+	
+					<p class="post-paragraph">${t.content}</p>
+	
+					<hr class="divider">
+	
+					<div class="post-btn-container">
+						<a class="thread-link" href="/thread/${t.id}">View Thread</a>
+					</div>
 				</div>
-			</div>
+			</c:if>
+			
+			<c:if test="${count == 0}">
+				<div class="mini-card">
+					<h4 class="mc-heading" style="margin-bottom: 0rem; text-align: center;">User has no threads posted</h4>
+				</div>
+			</c:if>
 			
 		</c:forEach>
 		</c:if>
@@ -100,23 +118,23 @@
 		
 		<label class="input-group flex-col">Fullname* <input id="fullname" type="text"
 			required="true" placeholder="This field cannot be left blank" autocomplete="off" onkeyup="validateFullname()"
-			name="fullname" path="fullname"  />
+			name="fullname" path="fullname" value="${fullname}"/>
 		</label> 
 		
 		<label class="input-group flex-col">Occupation <input id="" type="text"
 			placeholder="Leave blank if unemployed" autocomplete="off"
-			name="occupation" path="occupation"  />
+			name="occupation" path="occupation" value="${occupation}" />
 		</label>
 		
 		<label class="input-group flex-col">Location <input id="" type="text"
 			placeholder="City/State, Country" autocomplete="off"
-			name="location" path="location"  />
+			name="location" path="location" value="${location}" />
 		</label> 
 			
 			
 		<label class="input-group flex-col">Bio <textarea class="textarea"
 			placeholder="Tell everyone about yourself" rows="3" name="bio"
-			path="bio"></textarea>
+			path="bio">${bio}</textarea>
 		</label>
 
 	<button class="submit-button btnAnimation"
