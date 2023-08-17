@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.abc.jobportal.entity.JobPost;
@@ -17,11 +18,17 @@ public class JobPostService {
 	@Autowired
 	JobPostRepository jobPostRepository;
 	
+//	---------------
+//	CREATE JOB POST
+//	---------------
 	public JobPost save(JobPost jobPost) {
 		return jobPostRepository.save(jobPost);
 	}
 	
+//	------------------
+//	JOB POST RETRIEVAL
+//	------------------
 	public List<JobPost> getAllJobPosts() {
-		return jobPostRepository.findAll();
+		return jobPostRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
 	}
 }

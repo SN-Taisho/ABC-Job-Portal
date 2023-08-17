@@ -302,7 +302,10 @@ public class AuthController {
 	public void usersProfile(Model model, Principal principal) {
 		System.out.println("View profile as User");
 	}
-	
+
+//	-----------------------
+//	UPDATE PERSONAL PROFILE
+//	-----------------------
 	@PostMapping("update_profile")
 	public String updateProfileInfo(Principal principal, @ModelAttribute("user") User u, RedirectAttributes redir) {
 		

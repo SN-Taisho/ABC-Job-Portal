@@ -18,10 +18,16 @@ public class ThreadService {
 	@Autowired
 	ThreadRepository threadRepository;
 	
+//	---------------
+//	CREATE A THREAD
+//	---------------
 	public Thread save(Thread thread) {
 		return threadRepository.save(thread);
 	}
 	
+//	----------------
+//	THREAD RETRIEVAL
+//	----------------
 	public List<Thread> getAllThreads() {
 		return threadRepository.findAll();
 	}

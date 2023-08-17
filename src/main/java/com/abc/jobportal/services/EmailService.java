@@ -16,6 +16,9 @@ public class EmailService {
 	@Autowired
 	private JavaMailSender jMailSender;
 	
+//	----------
+//	SEND EMAIL
+//	----------
 	public void sendEmail(String toEmail, String subject, String body) 
 			throws UnsupportedEncodingException, MessagingException {
 		

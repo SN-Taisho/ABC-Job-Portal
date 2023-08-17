@@ -28,6 +28,9 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+//	-----------------
+//	USER REGISTRATION
+//	-----------------
 	public String save(User user) {
 		
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
@@ -38,20 +41,15 @@ public class UserService {
 		
 		return "User saved successfully";
 	}
-	
+//	ENCRYPT PASSWORD
 	public String encodePassword(String password) {
 		String encodedPassword = passwordEncoder.encode(password);
 		return encodedPassword;
 	}
-	
-	public User findUsername(String username) {
-		return userRepo.findByUsername(username);
-	}
-	
-	public User findEmail(String email) {
-		return userRepo.findByEmail(email);
-	}
-	
+
+//	--------------
+//	OTP
+//	--------------
 	public Boolean activate(String username) {
 		
 		User user = userRepo.findByUsername(username);
@@ -69,11 +67,10 @@ public class UserService {
 		return "New OTP created";
 	}
 	
-	public User findLoginUser(String username) {
-		return userRepo.findByUsername(username);
-		
-	}
 	
+//	--------------
+//	USER RETRIEVAL
+//	--------------
 	public List<User> showAllUser(){
 		return userRepo.findAll();
 	}
@@ -82,21 +79,33 @@ public class UserService {
 		return userRepo.search(keyword);
 	}
 	
-	public void update(User user) {
-		userRepo.save(user);
-		
+	public List<Role> getAllRoles() {
+		return roleRepo.findAll();
+	}
+	
+	public User findUsername(String username) {
+		return userRepo.findByUsername(username);
 	}
 	
 	public Optional<User> getUserInfo(long uid){
 		return userRepo.findById(uid);
 	}
 	
-	public void deleteUser(long uid) {
-		userRepo.deleteById(uid);
+	public User findEmail(String email) {
+		return userRepo.findByEmail(email);
+	}
+
+	public User findLoginUser(String username) {
+		return userRepo.findByUsername(username);
+		
 	}
 	
-	public List<Role> getAllRoles() {
-		return roleRepo.findAll();
+//	---------------
+//	USER MANAGEMENT
+//	---------------
+	public void update(User user) {
+		userRepo.save(user);
+		
 	}
 	
 	public void assignNewRole(User user, String role) {
@@ -105,4 +114,9 @@ public class UserService {
 		user.setRoles(new HashSet<>(roleRepo.findBySpecificRoles(role)));
 		userRepo.save(user);
 	}
+	
+	public void deleteUser(long uid) {
+		userRepo.deleteById(uid);
+	}
+
 }

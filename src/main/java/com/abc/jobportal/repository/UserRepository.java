@@ -21,7 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	@Modifying
 	public void activate(long id);
 	
-	
 	@Query(value = "SELECT u FROM User u WHERE u.fullname LIKE '%' || :keyword || '%'"
 			+ " OR u.username LIKE '%' || :keyword || '%'" + " OR u.location LIKE '%' || :keyword || '%'"
 			+ " OR u.occupation LIKE '%' || :keyword || '%'" + " OR u.email LIKE '%' || :keyword || '%'")
