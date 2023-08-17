@@ -10,4 +10,9 @@ public class AdminController {
 	public String userManagementPage() {
 		return"Admin/user-management";
 	}
+	
+	@GetMapping("/bulk-mail")
+	public String sendBulkMail() {
+		return "Admin/bulk-mail";
+	}
 }

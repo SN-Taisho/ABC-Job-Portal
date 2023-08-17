@@ -40,7 +40,7 @@ public class UserController {
 		String username = principal.getName();
 		User userdata = userService.findLoginUser(username);
 
-		List<Thread> threads = threadService.getAllThreads();
+		List<Thread> threads = threadService.getAllThreadsByDate();
 		model.addAttribute("threads", threads);
 		
 		String[] role = userdata.getRoles().stream().map(Role::getName).toArray(String[]::new);
@@ -78,19 +78,14 @@ public class UserController {
 //	-----------------
 //	View User Profile
 //	-----------------
+	@GetMapping("/test-profile")
+	public String testProfile() {
+		return "User/view-profile";
+	}
 	
 //	WORK IN PPROGRESS
 	@GetMapping("/view-profile/{username}")
 	public String viewUserProfile(@PathVariable(value = "username") String username, Model model) {
-		
-		User userdata = userService.findUsername(username);
-		
-		List<Thread> threads = threadService.getAllThreads();
-		model.addAttribute("threads", threads);
-		
-		List<User> user = new ArrayList<User>();
-		user.add(userdata);
-		model.addAttribute("user", user);
 		
 		return "User/view-profile";
 	}

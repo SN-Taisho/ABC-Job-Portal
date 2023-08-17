@@ -11,7 +11,7 @@
 	
 	<sf:form class="search-bar" action="search-results" method="get">
 		<button class="search-btn material-icons" type="submit">search</button>
-		<input class="search-input" placeholder="Search" name="keyword"/>
+		<input class="search-input" placeholder="Search" name="keyword" value="${keyword}"/>
 	</sf:form>
 	
 	<c:if test="${empty searchUser}">

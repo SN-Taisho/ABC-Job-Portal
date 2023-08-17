@@ -16,6 +16,7 @@
 
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/postlogin.css">
+<link rel="stylesheet" href="css/admin.css">;
 
 <link rel="icon" href="images/Logo.png" type="image/icon type">
 

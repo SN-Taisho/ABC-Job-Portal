@@ -14,7 +14,7 @@
 		<c:forEach items="${threads}" var="t">
 		
 			<div class="post-card">
-				<a class="post-op" href="view-profile/${t.getUser().getUsername()}"> <img class="post-profile-img"
+				<a class="post-op" href="view-profile/?username=${t.getUser().getUsername()}"> <img class="post-profile-img"
 					src="images/Profile.png" width="50" />
 					<p>${t.getUser().getFullname()}</p>
 				</a> <span class="post-date">${t.date}</span>
@@ -26,7 +26,7 @@
 				<hr class="divider">
 
 				<div class="post-btn-container">
-					<a class="thread-link" href="/thread/${t.id}">View Thread</a>
+					<a class="thread-link" href="/thread?tId=${t.id}">View Thread</a>
 				</div>
 			</div>
 			

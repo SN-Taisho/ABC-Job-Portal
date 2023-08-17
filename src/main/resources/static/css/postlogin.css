@@ -223,6 +223,19 @@
 }
 
 /* ----- Replies ----- */
+.reply-button {
+	background-color: var(--primary);
+	border: none;
+	border-radius: 20px;
+	color: var(--white);
+	cursor: pointer;
+	display: block;
+	font-family: var(--hFont);
+	font-size: 1.1rem;
+	margin: 0rem auto;
+	padding: 0.5rem 1rem;
+}
+
 .replies-container {
 	align-items: flex-end;
 	display: flex;

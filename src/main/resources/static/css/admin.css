@@ -1,0 +1,68 @@
+/* ----- Admin Table ----- */
+.admin-table-container {
+	background-color: var(--bgLight);
+	border-radius: 10px;
+	font-family: var(--pFont);
+	font-size: 1.1rem;
+	color: var(--paragraph);
+	padding: 1rem 2rem;
+}
+
+.admin-table {
+	border-collapse: separate;
+	border-spacing: 1.5rem 0.5rem;
+}
+.admin-table th {
+	color: var(--white);
+	font-weight: bold;
+	text-align: center;
+}
+.admin-table td {
+	text-align: center;
+}
+
+/* Change Role Form */
+.role-form {
+	align-items: cetner;
+	display: flex;
+	
+	width: fit-content;
+}
+.role-form input {
+	background-color: var(--bgDark);
+	border: none;
+	color: var(--paragraph);
+	font-size: 1.1rem;
+	outline: none;
+	width: 75px;
+	text-align: center;
+}
+
+
+/* CRUD Action Buttons */
+.action-td {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 5px;
+}
+.crud-actions {
+	border: none;
+	border-radius: 3px;
+	color: var(--white);
+	cursor: pointer;
+	padding: 7px;
+}
+
+.auth {
+	background-color: var(--auth);
+}
+.view {
+	background-color: var(--secondary);
+}
+.edit {
+	background-color: var(--tertiary);
+}
+.delete {
+	background-color: var(--danger);
+}
