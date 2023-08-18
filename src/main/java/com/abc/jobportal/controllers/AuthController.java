@@ -268,6 +268,10 @@ public class AuthController {
 	@GetMapping("/my-profile")
 	public String viewProfile(Principal principal, Model model) {
 		
+		if (principal.getName().equals(null)) {
+			return "redirect:access-denied";
+		}
+		
 		String username = principal.getName();
 		User userdata = userService.findLoginUser(username);
 
@@ -282,25 +286,7 @@ public class AuthController {
 		user.add(userdata);
 		model.addAttribute("user", user);
 
-		for (String roleName : roleNames) {
-			if (roleName == userRole && userRole.equalsIgnoreCase("Admin")) {
-				adminProfile();
-				return userRole + "/profile";
-			}
-			if (roleName == userRole && userRole.equalsIgnoreCase("User")) {
-				usersProfile(model, principal);
-				return userRole + "/profile";
-			}
-		}
-		return "redirect:access-denied";
-	}
-	
-	public void adminProfile() {
-		System.out.println("View profile as Administrator");
-	}
-
-	public void usersProfile(Model model, Principal principal) {
-		System.out.println("View profile as User");
+		return "User/profile";
 	}
 
 //	-----------------------
@@ -320,9 +306,6 @@ public class AuthController {
 		
 		userService.update(user);
 		
-		String success_msg = "Profile has been updated";
-		
-		redir.addFlashAttribute("success_msg", success_msg);
 		return "redirect:my-profile";
 	}
 }

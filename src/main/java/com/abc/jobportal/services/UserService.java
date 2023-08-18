@@ -105,11 +105,9 @@ public class UserService {
 //	---------------
 	public void update(User user) {
 		userRepo.save(user);
-		
 	}
 	
 	public void assignNewRole(User user, String role) {
-		
 		user.getRoles().clear();
 		user.setRoles(new HashSet<>(roleRepo.findBySpecificRoles(role)));
 		userRepo.save(user);

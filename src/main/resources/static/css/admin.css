@@ -5,6 +5,7 @@
 	font-family: var(--pFont);
 	font-size: 1.1rem;
 	color: var(--paragraph);
+	margin: 0rem 1rem;
 	padding: 1rem 2rem;
 }
 
@@ -30,12 +31,17 @@
 }
 .role-form input {
 	background-color: var(--bgDark);
-	border: none;
+	border: 2px solid transparent;
 	color: var(--paragraph);
 	font-size: 1.1rem;
+	margin-right: -2px;
 	outline: none;
 	width: 75px;
 	text-align: center;
+	transition: ease-out 0.3s;
+}
+.role-form input:focus	 {
+	border: 2px solid var(--auth);
 }
 
 
