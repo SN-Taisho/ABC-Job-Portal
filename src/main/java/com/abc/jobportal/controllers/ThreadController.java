@@ -59,7 +59,7 @@ public class ThreadController {
 	@GetMapping("/thread")
 	public String viewThreadPage(@RequestParam Long tId, Model model) {
 		
-		System.out.println(tId);
+		System.out.println("Viewing Thread Id = " + tId);
 		Thread threadContent = threadService.findThread(tId);
 		List<Thread> thread = new ArrayList<Thread>();
 		thread.add(threadContent);

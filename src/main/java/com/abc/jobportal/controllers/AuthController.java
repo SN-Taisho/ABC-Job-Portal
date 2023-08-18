@@ -275,7 +275,7 @@ public class AuthController {
 		String userRole = role[0];
 		String[] roleNames = userService.getAllRoles().stream().map(Role::getName).toArray(String[]::new);
 		
-		List<Thread> threads = threadService.getAllThreads();
+		List<Thread> threads = threadService.getAllThreadsByDate();
 		model.addAttribute("threads", threads);
 		
 		List<User> user = new ArrayList<User>();

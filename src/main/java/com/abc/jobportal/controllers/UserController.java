@@ -71,14 +71,23 @@ public class UserController {
 //	-----------------
 //	View User Profile
 //	-----------------
-	@GetMapping("/test-profile")
-	public String testProfile() {
-		return "User/view-profile";
-	}
-	
-//	WORK IN PPROGRESS
-	@GetMapping("/view-profile/{username}")
-	public String viewUserProfile(@PathVariable(value = "username") String username, Model model) {
+	@GetMapping("/view-profile")
+	public String viewUserProfile(@RequestParam String username, Model model, Principal principal) {
+		
+		String loggedUser = principal.getName();
+		
+		if (loggedUser.equals(username)) {
+			return "redirect:/my-profile";
+		}
+		
+		User userInfo = userService.findUsername(username);
+		List<User> user = new ArrayList<User>();
+		user.add(userInfo);
+		
+		List<Thread> threads = threadService.getAllThreadsByDate();
+		
+		model.addAttribute("threads", threads);
+		model.addAttribute("user", user);
 		
 		return "User/view-profile";
 	}

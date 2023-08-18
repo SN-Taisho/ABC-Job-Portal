@@ -29,6 +29,14 @@ public class JobPostService {
 //	JOB POST RETRIEVAL
 //	------------------
 	public List<JobPost> getAllJobPosts() {
+		return jobPostRepository.findAll();
+	}
+	
+	public List<JobPost> getAllJobPostsByDate() {
 		return jobPostRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
+	}
+	
+	public JobPost findJobPost(Long jpId) {
+		return jobPostRepository.getById(jpId);
 	}
 }

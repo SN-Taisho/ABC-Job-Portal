@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.abc.jobportal.entity.JobPost;
+import com.abc.jobportal.entity.JobPostResponse;
 import com.abc.jobportal.entity.User;
+import com.abc.jobportal.services.JobPostResponseService;
 import com.abc.jobportal.services.JobPostService;
 import com.abc.jobportal.services.UserService;
 
@@ -33,14 +36,12 @@ public class JobPostController {
 	@Autowired
 	JobPostService jobPostService;
 	
+	@Autowired
+	JobPostResponseService jobPostResposeService;
+	
 //	-----------------
 //	JOB POST CREATION
 //	-----------------
-	@GetMapping("/job-post")
-	public String jobPostPage() {
-		return "Jobs/job-post";
-	}
-	
 	@GetMapping("create-job-post")
 	public String createJobPostPage() {
 		return "Jobs/create-job-post";
@@ -93,4 +94,39 @@ public class JobPostController {
 		return "Jobs/job-listing";
 	}
 	
+//	-------------
+//	VIEW JOB POST
+//	-------------
+	@GetMapping("/job-post")
+	public String viewJobPost(@RequestParam Long jpId, Model model) {
+		
+		System.out.println("Viewing Job Post Id = " + jpId);
+		JobPost jobPostContent = jobPostService.findJobPost(jpId);
+		List<JobPost> jobPost = new ArrayList<JobPost>();
+		jobPost.add(jobPostContent);
+		
+		List<JobPostResponse> responses = jobPostResposeService.getJobPostResponses(jpId);
+		
+		model.addAttribute("jobPost", jobPost);
+		model.addAttribute("responses", responses);
+		
+		return "Jobs/job-post";
+	}
+	
+//	------------------------
+//	CREATE JOB POST RESPONSE
+//	------------------------
+	@PostMapping("respond_job_post")
+	public String respondJobPost(@ModelAttribute("jobPostResponse") JobPostResponse jobPostResponse, Principal principal) {
+		
+		String username = principal.getName();
+		
+		User user = userService.findLoginUser(username);
+		
+		jobPostResponse.setUser(user);
+		
+		jobPostResposeService.save(jobPostResponse);
+		
+		return "redirect:/job-post?jpId=" + jobPostResponse.getJobPostId();
+	}
 }

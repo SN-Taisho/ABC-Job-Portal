@@ -19,9 +19,9 @@ public class ThreadReplyService {
 	@Autowired
 	ThreadReplyRepository threadReplyRepo;
 	
-//	-----------
-//	SAVE THREAD
-//	-----------
+//	-----------------
+//	SAVE THREAD REPLY
+//	-----------------
 	public ThreadReply save(ThreadReply threadReplies) {
 		return threadReplyRepo.save(threadReplies);
 	}

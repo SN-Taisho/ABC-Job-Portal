@@ -21,8 +21,6 @@
 		<img class="cover-photo" src="images/CoverPhoto.png" width="920" /> 
 		<img class="profile-photo" src="images/Profile.png" width="100" />
 		
-	
-		
 		<div class="profile-details">
 				<h5 class="profile-name">${fullname}</h5>
 				<p class="profile-occupation">${occupation}</p>
@@ -95,13 +93,12 @@
 				</div>
 			</c:if>
 			
+		</c:forEach>
 			<c:if test="${count == 0}">
 				<div class="mini-card">
 					<h4 class="mc-heading" style="margin-bottom: 0rem; text-align: center;">User has no threads posted</h4>
 				</div>
 			</c:if>
-			
-		</c:forEach>
 		</c:if>
 		<c:if test="${empty threads}">
 		</c:if>

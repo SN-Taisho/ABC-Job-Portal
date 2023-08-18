@@ -32,7 +32,7 @@
 					<hr class="divider">
 
 					<div class="post-btn-container">
-						<a class="thread-link" href="/job-post/${j.id}">View Job Post</a>
+						<a class="thread-link" href="/job-post?jpId=${j.id}">View Job Post</a>
 					</div>
 
 				</div>
