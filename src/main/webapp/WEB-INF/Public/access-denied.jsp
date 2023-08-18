@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
-<jsp:include page="../public-navbar.jsp"></jsp:include>
+<sec:authorize access="!isAuthenticated()">
+	<jsp:include page="../public-navbar.jsp"></jsp:include>
+</sec:authorize>
+
+<sec:authorize access="isAuthenticated()">
+	<jsp:include page="../portal-navbar.jsp"></jsp:include>
+</sec:authorize>
 
 <main class="public limited justify-center">
 

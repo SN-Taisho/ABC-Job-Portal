@@ -38,25 +38,49 @@
 		</a>
 
 		<div class="align-center justify-evenly">
-			<ul id="portalNav" class="align-center list-style-none hFont">
-				<li><a href="/jobs" class="btnAnimation"><span
-						class="material-icons nav-icons">work</span>Jobs</a></li>
-				<li><a href="/homepage" class="btnAnimation"><span
-						class="material-icons nav-icons">home</span>Home</a></li>
-			</ul>
 
+			
+				<ul id="portalNav" class="align-center list-style-none hFont">
+
+				<sec:authorize access="hasRole('Admin')">
+					<li><a href="/user-management" class="btnAnimation"><span
+							class="material-icons nav-icons"><span
+								class="material-icons-outlined"> admin_panel_settings </span></span>Users</a></li>
+					<li><a href="/bulk-mail" class="btnAnimation"><span
+							class="material-icons nav-icons">mail</span>Bulk Mail</a></li>
+				</sec:authorize>
+
+				<sec:authorize access="hasAnyRole('Admin','User')">
+					<li><a href="/jobs" class="btnAnimation"><span
+							class="material-icons nav-icons">work</span>Jobs</a></li>
+					<li><a href="/homepage" class="btnAnimation"><span
+							class="material-icons nav-icons">home</span>Home</a></li>
+				</sec:authorize>
+					
+					
+				</ul>
+			
 			<button class="nav-menu-open material-icons btnAnimation"
 				onclick="toggleNavMenu()" style="margin-left: 10px;">menu</button>
+
 		</div>
 
 	</header>
 
 	<nav class="nav-menu alt">
 		<ul class="nav-menu-links">
+		
+		<sec:authorize access="hasAnyRole('Admin','User')">
 			<li><a href="/homepage">Home</a></li>
-			<li><a href="/jobs">Jobs</a></li>
 			<li><a href="/my-profile">Profile</a></li>
+			<li><a href="/jobs">Jobs</a></li>
 			<li><a href="/search">Search</a></li>
+		</sec:authorize>
+		
+		<sec:authorize access="hasRole('Admin')">
+			<li><a href="/user-management">Manage Users</a></li>
+		</sec:authorize>
+			
 			<form action="logout" method="post">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /> 

@@ -751,6 +751,12 @@ footer p {
 }
 
 /* ----- Specific Breakpoints ----- */
+@media only screen and (max-width: 1080px) {
+	#portalNav {
+		display: none;
+	}
+}
+
 @media only screen and (max-width: 880px) {
 	#homeContent {
 		padding-left: 0rem;
@@ -759,9 +765,6 @@ footer p {
 
 @media only screen and (max-width: 720px) {
 	#publicNav {
-		display: none;
-	}
-	#portalNav {
 		display: none;
 	}
 }
