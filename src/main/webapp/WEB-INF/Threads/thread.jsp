@@ -56,7 +56,7 @@
 					<c:if test="${replies.getUser().getUsername() eq currentUser}">
 						<div class="post-management">
 							<button id="openEditReply${status.count}"
-								style="background-color: var(--success);">Edit${replies.id}</button>
+								style="background-color: var(--success);">Edit</button>
 							<button
 								onclick="window.location.href='delete_reply?trId=${replies.id}'"
 								style="background-color: var(--danger);">Delete</button>

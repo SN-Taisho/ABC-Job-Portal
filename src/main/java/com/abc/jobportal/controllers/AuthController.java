@@ -19,10 +19,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.abc.jobportal.entity.Education;
+import com.abc.jobportal.entity.Experience;
 import com.abc.jobportal.entity.Role;
 import com.abc.jobportal.entity.Thread;
 import com.abc.jobportal.entity.User;
+import com.abc.jobportal.services.EducationService;
 import com.abc.jobportal.services.EmailService;
+import com.abc.jobportal.services.ExperienceService;
 import com.abc.jobportal.services.ThreadService;
 import com.abc.jobportal.services.UserService;
 import com.abc.jobportal.ServletRequest.Request;
@@ -32,6 +36,12 @@ public class AuthController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	ExperienceService experienceService;
+	
+	@Autowired
+	EducationService educationService;
 	
 	@Autowired
 	EmailService emailService;
@@ -275,16 +285,17 @@ public class AuthController {
 		String username = principal.getName();
 		User userdata = userService.findLoginUser(username);
 
-		String[] role = userdata.getRoles().stream().map(Role::getName).toArray(String[]::new);
-		String userRole = role[0];
-		String[] roleNames = userService.getAllRoles().stream().map(Role::getName).toArray(String[]::new);
-		
 		List<Thread> threads = threadService.getAllThreadsByDate();
 		model.addAttribute("threads", threads);
 		
 		List<User> user = new ArrayList<User>();
 		user.add(userdata);
 		model.addAttribute("user", user);
+		
+		List<Experience> experience = experienceService.findAllExpByUserId(userdata.getId());
+		model.addAttribute("experience", experience);
+		List<Education> education = educationService.findAllEduByUserId(userdata.getId());
+		model.addAttribute("education", education);
 
 		return "User/profile";
 	}

@@ -34,28 +34,46 @@
 	<div class="info-container">
 		<div class="info-section">
 			<h5 class="is-heading">Experience</h5>
-			<div class="mini-card">
-				<h6 class="mc-heading">Software Engineer at IBM</h6>
-				<p>4 Years</p>
-				<p>2019-2023</p>
-			</div>
-			
-			<div class="mini-card">
-				<h6 class="mc-heading">Software Engineer at IBM</h6>
-				<p>4 Years</p>
-				<p>2019-2023</p>
 
-			</div>
+			<c:if test="${not empty experience}">
+				<c:forEach items="${experience}" var="exp" varStatus="status">
+					<div class="mini-card">
+						<h6 class="mc-heading">${exp.occupation} at ${exp.company}</h6>
+						<p>
+							<c:out value="Total Years: ${exp.endYear - exp.startYear}"></c:out>
+						</p>
+						<p>${exp.startYear}-${exp.endYear}</p>
+					</div>
+				</c:forEach>
+			</c:if>
+
+			<c:if test="${empty experience}">
+				<div class="mini-card">
+					<h6 class="mc-heading text-align-center">User has no work experience</h6>
+				</div>
+			</c:if>
+
 		</div>
 
 		<div class="info-section">
 			<h5 class="is-heading">Education</h5>
-			<div class="mini-card">
-				<h6 class="mc-heading">Software Engineering Student at Lithan
-					Academy</h6>
-				<p>4 Years</p>
-				<p>2022-2026</p>
-			</div>
+			<c:if test="${not empty education}">
+				<c:forEach items="${education}" var="edu" varStatus="status">
+					<div class="mini-card">
+						<h6 class="mc-heading">${edu.course}at ${edu.school}</h6>
+						<p>
+							<c:out value="Total Years: ${edu.endYear - edu.startYear}"></c:out>
+						</p>
+						<p>${edu.startYear}-${edu.endYear}</p>
+					</div>
+				</c:forEach>
+			</c:if>
+
+			<c:if test="${empty education}">
+				<div class="mini-card">
+					<h6 class="mc-heading text-align-center">User has no education</h6>
+				</div>
+			</c:if>
 		</div>
 	</div>
 

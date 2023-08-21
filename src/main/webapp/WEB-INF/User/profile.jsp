@@ -40,28 +40,149 @@
 	<div class="info-container">
 		<div class="info-section">
 			<h5 class="is-heading">Experience</h5>
-			<div class="mini-card">
-				<h6 class="mc-heading">Software Engineer at IBM</h6>
-				<p>4 Years</p>
-				<p>2019-2023</p>
-			</div>
 			
-			<div class="mini-card">
-				<h6 class="mc-heading">Software Engineer at IBM</h6>
-				<p>4 Years</p>
-				<p>2019-2023</p>
+			<c:if test="${not empty experience}">
+				<c:forEach items="${experience}" var="exp" varStatus="status">
+					<div class="mini-card">
+						<h6 class="mc-heading">${exp.occupation} at ${exp.company}</h6>
+						<p><c:out value="Total Years: ${exp.endYear - exp.startYear}"></c:out></p>
+						<p>${exp.startYear}-${exp.endYear}</p>
 
-			</div>
+						<div class="post-management justify-evenly" style="margin-top: 1rem;">
+							<button id="openEditExp${status.count}"
+								style="background-color: var(--success);">Edit</button>
+							<button
+								onclick="window.location.href='delete_experience?expId=${exp.id}'"
+								style="background-color: var(--danger);">Delete</button>
+						</div>
+					</div>
+					
+					<dialog id="editExpModal${status.count}" class="modal">
+
+						<h3 class="modal-heading">
+							Edit<br>Reply
+						</h3>
+						<sf:form class="align-center flex-col form" method="post"
+							action="update_experience?expId=${exp.id}" modelAttribute="experience">
+
+						<label class="input-group flex-col">Occupation <input
+							type="text" required="true" placeholder="e.g. Software Engineer"
+							autocomplete="off" name="occupation" path="occupation" value="${exp.occupation}"/>
+						</label>
+
+						<label class="input-group flex-col">Company <input
+							type="text" required="true" placeholder="e.g. Google"
+							autocomplete="off" name="company" path="company" value="${exp.company}"/>
+						</label>
+
+						<label class="input-group flex-col">Start Year <input
+							type="text" required="true" placeholder="e.g. 2020"
+							autocomplete="off" name="startYear" path="startYear" value="${exp.startYear}"/>
+						</label>
+
+						<label class="input-group flex-col">End Year <input
+							type="text" required="true" placeholder="e.g. 2021"
+							autocomplete="off" name="endYear" path="endYear" value="${exp.endYear}"/>
+						</label>
+
+						<button class="submit-button btnAnimation"
+								style="background-color: var(- -success);" type="submit">Save</button>
+						</sf:form>
+						<button id="closeEditExp${status.count}" class="material-icons modal-close">close</button>
+						</dialog>
+
+						<script>
+						document.querySelector("#openEditExp${status.count}").addEventListener("click", () => {
+							document.querySelector("#editExpModal${status.count}").showModal();
+							});
+						
+						document.querySelector("#closeEditExp${status.count}").addEventListener("click", () => {
+							document.querySelector("#editExpModal${status.count}").close();
+							});
+						</script>
+				</c:forEach>
+			</c:if>
+			<c:if test="${empty experience}">
+				<div class="mini-card">
+					<h6 class="mc-heading text-align-center">Add your work experience here</h6>
+				</div>
+			</c:if>
+			
 		</div>
 
 		<div class="info-section">
 			<h5 class="is-heading">Education</h5>
-			<div class="mini-card">
-				<h6 class="mc-heading">Software Engineering Student at Lithan
-					Academy</h6>
-				<p>4 Years</p>
-				<p>2022-2026</p>
-			</div>
+			<c:if test="${not empty education}">
+				<c:forEach items="${education}" var="edu" varStatus="status">
+					<div class="mini-card">
+						<h6 class="mc-heading">${edu.course} at ${edu.school}</h6>
+						<p>
+							<c:out value="Total Years: ${edu.endYear - edu.startYear}"></c:out>
+						</p>
+						<p>${edu.startYear}-${edu.endYear}</p>
+
+						<div class="post-management justify-evenly"
+							style="margin-top: 1rem;">
+							<button id="openEditEdu${status.count}"
+								style="background-color: var(--success);">Edit</button>
+							<button
+								onclick="window.location.href='delete_education?eduId=${exp.id}'"
+								style="background-color: var(--danger);">Delete</button>
+						</div>
+					</div>
+
+					<dialog id="editEduModal${status.count}" class="modal">
+
+					<h3 class="modal-heading">
+						Edit<br>Education
+					</h3>
+					<sf:form class="align-center flex-col form" method="post"
+						action="update_education?eduId=${edu.id}"
+						modelAttribute="education">
+
+						<label class="input-group flex-col">Course <input type="text"
+							required="true" placeholder="e.g. BDSE" autocomplete="off"
+							name="course" path="course" value="${edu.course}" />
+						</label>
+
+						<label class="input-group flex-col">School <input
+							type="text" required="true" placeholder="e.g. Lithan Academy"
+							autocomplete="off" name="school" path="school" value="${edu.school}" />
+						</label>
+
+						<label class="input-group flex-col">Start Year <input
+							type="text" required="true" placeholder="e.g. 2020"
+							autocomplete="off" name="startYear" path="startYear" value="${edu.startYear}" />
+						</label>
+
+						<label class="input-group flex-col">End Year <input
+							type="text" required="true" placeholder="e.g. 2021"
+							autocomplete="off" name="endYear" path="endYear" value="${edu.endYear}" />
+						</label>
+
+						<button class="submit-button btnAnimation"
+							style="background-color: var(- -success);" type="submit">Save</button>
+					</sf:form>
+					<button id="closeEditEdu${status.count}"
+						class="material-icons modal-close">close</button>
+					</dialog>
+
+					<script>
+						document.querySelector("#openEditEdu${status.count}").addEventListener("click", () => {
+							document.querySelector("#editEduModal${status.count}").showModal();
+							});
+						
+						document.querySelector("#closeEditEdu${status.count}").addEventListener("click", () => {
+							document.querySelector("#editEduModal${status.count}").close();
+							});
+						</script>
+				</c:forEach>
+			</c:if>
+			<c:if test="${empty education}">
+				<div class="mini-card">
+					<h6 class="mc-heading text-align-center">Please add your education here</h6>
+				</div>
+			</c:if>
 		</div>
 	</div>
 
@@ -88,7 +209,7 @@
 					<hr class="divider">
 	
 					<div class="post-btn-container">
-						<a class="thread-link" href="/thread/${t.id}">View Thread</a>
+						<a class="thread-link" href="/thread?tId=${t.id}">View Thread</a>
 					</div>
 				</div>
 			</c:if>
@@ -144,32 +265,32 @@
 
 	<h3 class="modal-heading" style="margin-bottom: 0.5rem;">Add<br>Experience</h3>
 	
-	<form id="editProfileForm" class="align-center flex-col form"
-		onsubmit="validateEditProfile(event)">
+	<sf:form id="editProfileForm" class="align-center flex-col form"
+		method="post" action="add_experience" modelAttribute="experience">
 		
 		<label class="input-group flex-col">Occupation <input type="text"
 			required="true" placeholder="e.g. Software Engineer" autocomplete="off"
-			name="" path=""/>
+			name="occupation" path="occupation"/>
 		</label> 
 		
 		<label class="input-group flex-col">Company <input type="text"
 			required="true" placeholder="e.g. Google" autocomplete="off"
-			name="" path=""/>
+			name="company" path="company"/>
 		</label>
 		
 		<label class="input-group flex-col">Start Year <input type="text"
 			required="true" placeholder="e.g. 2020" autocomplete="off"
-			name="" path=""/>
+			name="startYear" path="startYear"/>
 		</label> 
 		
 		<label class="input-group flex-col">End Year <input type="text"
 			required="true" placeholder="e.g. 2021" autocomplete="off"
-			name="" path=""/>
+			name="endYear" path="endYear"/>
 		</label> 
 
 	<button class="submit-button btnAnimation"
 			style="background-color: var(--success);" type="submit">Save</button>
-	</form>
+	</sf:form>
 	<button id="closeAddExp" class="material-icons modal-close">close</button>
 </dialog>
 
@@ -178,32 +299,32 @@
 
 	<h3 class="modal-heading" style="margin-bottom: 0.5rem;">Add<br>Education</h3>
 	
-	<form id="editProfileForm" class="align-center flex-col form"
-		onsubmit="validateEditProfile(event)">
+	<sf:form id="editProfileForm" class="align-center flex-col form"
+		method="post" action="add_education" modelAttribute="education">
 		
 		<label class="input-group flex-col">Course <input type="text"
 			required="true" placeholder="e.g. BDSE" autocomplete="off"
-			name="" path=""/>
+			name="course" path="course"/>
 		</label>
 		
 		<label class="input-group flex-col">School <input type="text"
 			required="true" placeholder="e.g. Lithan Academy" autocomplete="off"
-			name="" path=""/>
+			name="school" path="school"/>
 		</label>
 		
 		<label class="input-group flex-col">Start Year <input type="text"
 			required="true" placeholder="e.g. 2020" autocomplete="off"
-			name="" path=""/>
+			name="startYear" path="startYear"/>
 		</label> 
 		
 		<label class="input-group flex-col">End Year <input type="text"
 			required="true" placeholder="e.g. 2021" autocomplete="off"
-			name="" path=""/>
+			name="endYear" path="endYear"/>
 		</label> 
 
 	<button class="submit-button btnAnimation"
 			style="background-color: var(--success);" type="submit">Save</button>
-	</form>
+	</sf:form>
 	<button id="closeAddEdu" class="material-icons modal-close">close</button>
 </dialog>
 
