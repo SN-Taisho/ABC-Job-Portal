@@ -9,6 +9,8 @@
 
 <main class="single-main">
 	
+	<jsp:include page="../search-nav.jsp"></jsp:include>
+	
 	<sf:form class="search-bar" action="search-results" method="get">
 		<button class="search-btn material-icons" type="submit">search</button>
 		<input class="search-input" placeholder="Search" name="keyword" value="${keyword}"/>

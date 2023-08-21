@@ -16,27 +16,31 @@ import com.abc.jobportal.repository.ThreadRepository;
 public class ThreadService {
 
 	@Autowired
-	ThreadRepository threadRepository;
+	ThreadRepository threadRepo;
 	
 //	---------------
 //	CREATE A THREAD
 //	---------------
 	public Thread save(Thread thread) {
-		return threadRepository.save(thread);
+		return threadRepo.save(thread);
 	}
 	
 //	----------------
 //	THREAD RETRIEVAL
 //	----------------
 	public List<Thread> getAllThreads() {
-		return threadRepository.findAll();
+		return threadRepo.findAll();
+	}
+	
+	public List<Thread> search(String keyword) {
+		return threadRepo.search(keyword);
 	}
 	
 	public List<Thread> getAllThreadsByDate() {
-		return threadRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
+		return threadRepo.findAll(Sort.by(Sort.Direction.DESC, "date"));
 	}
 
 	public Thread findThread(Long tId) {
-		return threadRepository.getById(tId);
+		return threadRepo.getById(tId);
 	}
 }

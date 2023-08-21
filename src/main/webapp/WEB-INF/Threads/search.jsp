@@ -8,8 +8,10 @@
 </jsp:include>
 
 <main class="single-main">
-	
-	<sf:form class="search-bar" action="search-results" method="get">
+
+	<jsp:include page="../search-nav.jsp"></jsp:include>
+
+	<sf:form class="search-bar" action="thread-results" method="get">
 		<button class="search-btn material-icons" type="submit">search</button>
 		<input class="search-input" placeholder="Search" name="keyword"/>
 	</sf:form>

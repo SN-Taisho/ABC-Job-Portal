@@ -46,28 +46,6 @@ public class UserController {
 		return "User/homepage";
 	}
 	
-//	--------------------
-//	Search Functionality
-//	--------------------
-	@GetMapping("/search")
-	public String searchPage() {
-		return "User/search";
-	}
-	
-	@GetMapping("/search-results")
-	public ModelAndView searchResultsPage(@RequestParam String keyword, Model model, Principal principal) {
-		
-		String username = principal.getName();
-		User user = userService.findLoginUser(username);
-		model.addAttribute("currentUser", user.getUsername());
-		
-		List<User> searchUser = userService.search(keyword);
-		System.out.println(searchUser);
-		
-		model.addAttribute("keyword", keyword);
-		return new ModelAndView("User/search-results", "searchUser", searchUser);
-	}
-
 //	-----------------
 //	View User Profile
 //	-----------------

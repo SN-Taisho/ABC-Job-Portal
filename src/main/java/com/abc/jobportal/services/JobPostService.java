@@ -16,27 +16,31 @@ import com.abc.jobportal.repository.JobPostRepository;
 public class JobPostService {
 	
 	@Autowired
-	JobPostRepository jobPostRepository;
+	JobPostRepository jobPostRepo;
 	
 //	---------------
 //	CREATE JOB POST
 //	---------------
 	public JobPost save(JobPost jobPost) {
-		return jobPostRepository.save(jobPost);
+		return jobPostRepo.save(jobPost);
 	}
 	
 //	------------------
 //	JOB POST RETRIEVAL
 //	------------------
 	public List<JobPost> getAllJobPosts() {
-		return jobPostRepository.findAll();
+		return jobPostRepo.findAll();
+	}
+	
+	public List<JobPost> search(String keyword) {
+		return jobPostRepo.search(keyword);
 	}
 	
 	public List<JobPost> getAllJobPostsByDate() {
-		return jobPostRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
+		return jobPostRepo.findAll(Sort.by(Sort.Direction.DESC, "date"));
 	}
 	
 	public JobPost findJobPost(Long jpId) {
-		return jobPostRepository.getById(jpId);
+		return jobPostRepo.getById(jpId);
 	}
 }
