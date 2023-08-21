@@ -3,6 +3,7 @@ package com.abc.jobportal.controllers;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,11 @@ public class ThreadController {
 //	VIEW THREAD
 //	-----------
 	@GetMapping("/thread")
-	public String viewThreadPage(@RequestParam Long tId, Model model) {
+	public String viewThreadPage(@RequestParam Long tId, Model model, Principal principal) {
+		
+		String username = principal.getName();
+		
+		model.addAttribute("currentUser", username);
 		
 		System.out.println("Viewing Thread Id = " + tId);
 		Thread threadContent = threadService.findThread(tId);
@@ -72,21 +77,104 @@ public class ThreadController {
 		return "Threads/thread";
 	}
 	
+//	-------------
+//	UPDATE THREAD
+//	-------------
+	@PostMapping("update_thread")
+	public String updateThread(@ModelAttribute("thread") Thread thread, @RequestParam Long tId, Principal principal) {
+		
+		String currentUser = principal.getName();
+		
+		Thread thisThread = threadService.findThread(tId);
+		String poster = thisThread.getUser().getUsername();
+		
+		if (currentUser.equals(poster)) {
+			
+			thisThread.setTitle(thread.getTitle()  + " (edited)");
+			thisThread.setContent(thread.getContent());
+			
+			threadService.save(thisThread);
+			
+			return "redirect:/thread?tId=" + tId;
+		}
+		return "redirect:/access-denied";
+	}
+	
+//	-------------
+//	DELETE THREAD
+//	-------------
+	@GetMapping("delete_thread")
+	public String deleteThread(@RequestParam Long tId, Principal principal) {
+		
+		String currentUser = principal.getName();
+		
+		Thread thisThread = threadService.findThread(tId);
+		String poster = thisThread.getUser().getUsername();
+		
+		if (currentUser.equals(poster)) {
+			System.out.println("Thread Deleted " + tId);
+			
+			return "redirect:/homepage";
+		}		
+		return "redirect:/access-denied";
+	}
+	
 //	---------------
 //	REPLY TO THREAD
 //	---------------
 	@PostMapping("reply_thread")
-	public String repyToThread(@ModelAttribute("threadReply") ThreadReply threadReplies, Principal principal) {
+	public String repyToThread(@ModelAttribute("threadReply") ThreadReply threadReply, Principal principal) {
 		
 		String username = principal.getName();
 		
 		User user = userService.findLoginUser(username);
 		
-		threadReplies.setUser(user);
+		threadReply.setUser(user);
 		
-		threadReplyService.save(threadReplies);
+		threadReplyService.save(threadReply);
 		
-		return "redirect:thread?tId=" + threadReplies.getThreadId();
+		return "redirect:thread?tId=" + threadReply.getThreadId();
 	}
 	
+//	------------
+//	UPDATE REPLY
+//	------------
+	@PostMapping("update_reply")
+	public String updateReply(@ModelAttribute("threadReply") ThreadReply threadReply, @RequestParam Long trId, Principal principal) {
+		
+		String currentUser = principal.getName();
+		
+		Long threadId = threadReply.getThreadId();
+		ThreadReply thisThreadReply = threadReplyService.findThreadReply(trId);
+		String poster = thisThreadReply.getUser().getUsername();
+		
+		if (currentUser.equals(poster)) {
+			
+			thisThreadReply.setContent(threadReply.getContent() + " (edited)");
+			
+			threadReplyService.save(thisThreadReply);
+			
+			return "redirect:/thread?tId=" + threadId;
+		}
+		return "redirect:access-denied";
+	}
+	
+//	------------
+//	DELETE REPLY
+//	------------
+	@GetMapping("delete_reply")
+	public String deleteReply(@RequestParam Long trId, Principal principal) {
+		
+		String currentUser = principal.getName();
+		
+		ThreadReply thisReply = threadReplyService.findThreadReply(trId);
+		String poster = thisReply.getUser().getUsername();
+		
+		if (currentUser.equals(poster)) {
+			System.out.println("Reply Deleted " + trId);
+			
+			return "redirect:/thread?tId=" + thisReply.getThreadId();
+		}		
+		return "redirect:/access-denied";
+	}
 }

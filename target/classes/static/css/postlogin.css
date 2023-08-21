@@ -300,6 +300,26 @@
 	text-decoration: none;
 }
 
+/* ----- Edit Button ----- */
+.post-management {
+	display: flex;
+	gap: 1rem;
+	margin-left: auto;
+}
+.post-management button {
+	background-color: var(--success);
+	border: none;
+	border-radius: 5px;
+	color: var(--white);
+	cursor: pointer;
+	display: block;
+	font-family: var(--hFont);
+	font-weight: bold;
+	letter-spacing: 2px;
+	padding: 0.5rem 1rem;
+	width: fit-content;
+}
+
 /* ----- Profile ----- */
 .profile {
 	background-color: var(--bgLight);

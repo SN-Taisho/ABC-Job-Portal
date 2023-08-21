@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.abc.jobportal.entity.Thread;
 import com.abc.jobportal.entity.ThreadReply;
 import com.abc.jobportal.repository.ThreadReplyRepository;
 
@@ -39,6 +40,10 @@ public class ThreadReplyService {
 	
 	public Optional<ThreadReply> getThreadReplyInfo(Long tId) {
 		return threadReplyRepo.findById(tId);
+	}
+	
+	public ThreadReply findThreadReply(Long trId) {
+		return threadReplyRepo.getById(trId);
 	}
 	
 //	----------------
