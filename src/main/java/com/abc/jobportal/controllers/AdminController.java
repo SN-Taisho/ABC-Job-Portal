@@ -1,8 +1,11 @@
 package com.abc.jobportal.controllers;
 
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.abc.jobportal.entity.BulkMail;
 import com.abc.jobportal.entity.Role;
 import com.abc.jobportal.entity.User;
+import com.abc.jobportal.services.EmailService;
 import com.abc.jobportal.services.UserService;
 
 @Controller
@@ -23,12 +28,33 @@ public class AdminController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	EmailService emailService;
+	
 //	--------------
 //	SEND BULK MAIL
 //	--------------
-	@GetMapping("/bulk-mail")
-	public String sendBulkMail() {
+	@GetMapping("/send-bulk-mail")
+	public String sendBulkMailPage() {
 		return "Admin/bulk-mail";
+	}
+	
+	@PostMapping("send_bulk_mail")
+	public String sendBulkMail(@ModelAttribute("bulkMail") BulkMail bulkMail) 
+			throws UnsupportedEncodingException, MessagingException {
+		
+		String[] recipients = userService.getAllUserEmail();
+		
+		String text = bulkMail.getContent();
+		String htmlFormatedText = text.replace("\r\n", "<br />");
+		System.out.println(htmlFormatedText);
+		
+		String subject = bulkMail.getSubject();
+		String body = "<p>" + htmlFormatedText + "</p>";
+
+		emailService.sendBulkMail(recipients, subject, body);
+		
+		return "redirect:/send-bulk-mail";
 	}
 	
 //	---------------
@@ -102,8 +128,4 @@ public class AdminController {
 		}
     	return "redirect:access-denied";
     }
-    
-//	-----------------
-//	THREAD MANAGEMENT
-//	-----------------
 }

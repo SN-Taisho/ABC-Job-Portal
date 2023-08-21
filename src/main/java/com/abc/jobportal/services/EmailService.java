@@ -34,4 +34,22 @@ public class EmailService {
 		
 		System.out.println("Email sent successfully");
 	}
+
+//	--------------
+//	SEND BULK MAIL
+//	--------------
+	public void sendBulkMail(String[] recipients, String subject, String body)
+			throws UnsupportedEncodingException, MessagingException {
+		
+		MimeMessage message = jMailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+		
+		helper.setFrom("sn.taisho@gmail.com");
+		helper.setTo(recipients);
+		helper.addCc("paulpoliquit123@gmail.com");
+		helper.setSubject(subject);
+		helper.setText(body, true);
+		
+		jMailSender.send(message);
+	}
 }

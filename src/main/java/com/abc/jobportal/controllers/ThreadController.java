@@ -49,6 +49,10 @@ public class ThreadController {
 		
 		thread.setUser(user);
 		
+		String text = thread.getContent();
+		String htmlFormatedText = text.replace("\r\n", "<br />");
+		thread.setContent(htmlFormatedText);
+		
 		threadService.save(thread);
 		
 		return "redirect:homepage";
@@ -89,6 +93,10 @@ public class ThreadController {
 		String poster = thisThread.getUser().getUsername();
 		
 		if (currentUser.equals(poster)) {
+			
+			String text = thread.getContent();
+			String htmlFormatedText = text.replace("\r\n", "<br />");
+			thread.setContent(htmlFormatedText);
 			
 			thisThread.setTitle(thread.getTitle()  + " (edited)");
 			thisThread.setContent(thread.getContent());
@@ -131,6 +139,10 @@ public class ThreadController {
 		
 		threadReply.setUser(user);
 		
+		String text = threadReply.getContent();
+		String htmlFormatedText = text.replace("\r\n", "<br />");
+		threadReply.setContent(htmlFormatedText);
+		
 		threadReplyService.save(threadReply);
 		
 		return "redirect:thread?tId=" + threadReply.getThreadId();
@@ -149,6 +161,10 @@ public class ThreadController {
 		String poster = thisThreadReply.getUser().getUsername();
 		
 		if (currentUser.equals(poster)) {
+			
+			String text = threadReply.getContent();
+			String htmlFormatedText = text.replace("\r\n", "<br />");
+			threadReply.setContent(htmlFormatedText);
 			
 			thisThreadReply.setContent(threadReply.getContent() + " (edited)");
 			

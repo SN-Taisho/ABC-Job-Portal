@@ -91,6 +91,10 @@ public class UserService {
 		return userRepo.findById(uid);
 	}
 	
+	public String[] getAllUserEmail() {
+		return userRepo.findAllEmails();
+	}
+	
 	public User findEmail(String email) {
 		return userRepo.findByEmail(email);
 	}

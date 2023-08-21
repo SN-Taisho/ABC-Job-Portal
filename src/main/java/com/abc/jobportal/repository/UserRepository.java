@@ -17,6 +17,9 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	User findByEmail(String email);
 	
+	@Query("SELECT u.email FROM User u")
+	String[] findAllEmails();
+	
 	@Query("UPDATE User u SET u.activated = true WHERE u.id = ?1")
 	@Modifying
 	public void activate(long id);

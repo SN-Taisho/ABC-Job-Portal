@@ -78,6 +78,10 @@ public class JobPostController {
 		
 		jobPost.setPhotoImagePath("/images/post-image/" + savedJobPost.getId() + "/" + savedJobPost.getPhotos());
 		
+		String text = jobPost.getContent();
+		String htmlFormatedText = text.replace("\r\n", "<br />");
+		jobPost.setContent(htmlFormatedText);
+		
 		jobPostService.save(jobPost);
 		
 		return "redirect:dashboard";
@@ -107,6 +111,11 @@ public class JobPostController {
 		thisJobPost.setTitle(jobPost.getTitle());
 		thisJobPost.setCompany(jobPost.getCompany());
 		thisJobPost.setSalary(jobPost.getSalary());
+		
+		String text = jobPost.getContent();
+		String htmlFormatedText = text.replace("\r\n", "<br />");
+		jobPost.setContent(htmlFormatedText);
+		
 		thisJobPost.setContent(jobPost.getContent());
 		
 		jobPostService.save(thisJobPost);

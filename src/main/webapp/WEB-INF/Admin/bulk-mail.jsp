@@ -11,8 +11,7 @@
 	<section class="create-post">
 		<h3 class="form-heading">Send Bulk Mail</h3>
 		
-		<form class="create-form" method="post" action="send_bulk_mail" modelAttribute="bulkMail" 
-			enctype="multipart/form-data">
+		<sf:form class="create-form" method="post" action="send_bulk_mail" modelAttribute="bulkMail">
 		
 			<label class="input-group flex-col">Subject<input id="" type="text" 
 			required="true" placeholder="Insert interesting title" autocomplete="off"
@@ -26,7 +25,7 @@
 			<button class="submit-button" type="submit" style="border-radius: 10px;">Send Mail</button>
 
 
-		</form>
+		</sf:form>
 		
 	</section>
 
