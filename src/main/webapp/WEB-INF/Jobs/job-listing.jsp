@@ -2,16 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <jsp:include page="../portal-navbar.jsp">
-	<jsp:param value="Profile" name="HTMLtitle" />
+	<jsp:param value="Jobs" name="HTMLtitle" />
 </jsp:include>
 
 <main class="single-main">
 
 	<div class="posts-container">
 		
-		<h3 class="pub-heading" style="text-transform: capitalize;">What employers are looking for</h3>
+		<sec:authorize access="hasRole('Admin')">
+			<a class="create-post-btn" href="/create-job-post">Post a Job</a>
+			
+			<h3 class="pub-heading" style="text-transform: capitalize;">Job Listings</h3>
+		</sec:authorize>
+		
+		<sec:authorize access="hasRole('User')">
+			<h3 class="pub-heading" style="text-transform: capitalize;">What employers are looking for</h3>
+		</sec:authorize>
 
 		<c:if test="${not empty jobPosts}">
 			<c:forEach items="${jobPosts}" var="j">

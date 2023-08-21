@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <jsp:include page="../portal-navbar.jsp">
 	<jsp:param value="Job Post" name="HTMLtitle" />
@@ -36,6 +38,13 @@
 			src="${jobPostPhotoPath}" alt="job-post-attachment.png" width="600" />
 			
 		<p class="post-paragraph">${jobPostContent}</p>
+		
+		<sec:authorize access="hasRole('Admin')">
+			<div class="post-management">
+				<button onclick="window.location.href='edit-job-post?jpId=${jobPostId}'" style="background-color: var(--success);">Edit</button>
+				<button onclick="window.location.href='delete_job_post?jpId=${jobPostId}'" style="background-color: var(--danger);">Delete</button>
+			</div>
+		</sec:authorize>
 
 	</div>
 	

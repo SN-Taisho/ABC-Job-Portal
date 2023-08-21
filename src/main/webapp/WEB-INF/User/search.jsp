@@ -12,8 +12,8 @@
 	<jsp:include page="../search-nav.jsp"></jsp:include>
 
 	<sf:form class="search-bar" action="user-results" method="get">
-		<button class="search-btn material-icons" type="submit">search</button>
-		<input class="search-input" placeholder="Search" name="keyword"/>
+		<button class="search-btn user material-icons" type="submit">search</button>
+		<input class="search-input user" placeholder="Search" name="keyword"/>
 	</sf:form>
 	
 

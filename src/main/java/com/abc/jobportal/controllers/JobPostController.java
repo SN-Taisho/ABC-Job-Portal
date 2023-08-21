@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,7 +49,7 @@ public class JobPostController {
 	}
 	
 	@PostMapping("create_job_post")
-	public String createJobPost(@ModelAttribute("jobPost") JobPost jobPost,@RequestParam("fileImage") MultipartFile multipartFile, Principal principal)
+	public String createJobPost(@ModelAttribute("jobPost") JobPost jobPost, @RequestParam("fileImage") MultipartFile multipartFile, Principal principal)
 		throws IOException {
 		
 		String username = principal.getName();
@@ -80,6 +81,50 @@ public class JobPostController {
 		jobPostService.save(jobPost);
 		
 		return "redirect:dashboard";
+	}
+	
+//	-------------
+//	EDIT JOB POST
+//	-------------
+	@GetMapping("edit-job-post")
+	public String editJobPostPage(@RequestParam Long jpId, Model model) {
+		
+		System.out.println("Viewing Job Post Id = " + jpId);
+		JobPost jobPostContent = jobPostService.findJobPost(jpId);
+		List<JobPost> jobPost = new ArrayList<JobPost>();
+		jobPost.add(jobPostContent);
+		
+		model.addAttribute("jobPost", jobPost);
+		
+		return "Jobs/edit-job-post";
+	}
+	
+	@PostMapping("edit_job_post")
+	public String editJobPost(@ModelAttribute("jobPost") JobPost jobPost, @RequestParam Long jpId) {
+		
+		JobPost thisJobPost = jobPostService.findJobPost(jpId);
+		
+		thisJobPost.setTitle(jobPost.getTitle());
+		thisJobPost.setCompany(jobPost.getCompany());
+		thisJobPost.setSalary(jobPost.getSalary());
+		thisJobPost.setContent(jobPost.getContent());
+		
+		jobPostService.save(thisJobPost);
+		
+		return "redirect:/job-post?jpId=" + jpId;
+	}
+	
+//	---------------
+//	DELETE JOB POST
+//	---------------
+	@GetMapping("delete_job_post")
+	public String deleteJobPost(@RequestParam Long jpId) {
+		
+		JobPost thisJobPost = jobPostService.findJobPost(jpId);
+		
+		System.out.println("Deleted job post "+ thisJobPost.getId());
+		
+		return "redirect:/homepage";
 	}
 	
 //	------------

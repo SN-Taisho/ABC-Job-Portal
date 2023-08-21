@@ -128,6 +128,19 @@
 	border-radius: 5px;
 }
 
+.cancel-btn {
+	background-color: var(--danger);
+	border-radius: 5px;
+	color: var(--white);
+	font-family: var(--hFont);
+	font-weight: bold;
+	letter-spacing: 2px;
+	padding: 0.5rem 1rem;
+	margin-left: auto;
+	margin-right: 1rem;
+	text-decoration: none;
+}
+
 /* ----- Posts Area ----- */
 .posts-container {
 	align-items: center;
@@ -463,8 +476,22 @@
 	width: 85%;
 	transition: ease-out 0.3s;
 }
+.search-input.job {
+	border: 2px solid var(--bgLight);
+	border-left: 2px solid var(--auth);
+}
+.search-input.user {
+	border: 2px solid var(--bgLight);
+	border-left: 2px solid var(--success);
+}
 .search-input:focus {
 	border: 2px solid var(--primary);
+}
+.search-input.job:focus {
+	border: 2px solid var(--auth);
+}
+.search-input.user:focus {
+	border: 2px solid var(--success);
 }
 .search-btn {
 	background-color: var(--primary);
@@ -474,6 +501,14 @@
 	cursor: pointer;
 	font-size: 2.5rem;
 	width:15%;
+}
+.search-btn.job {
+	background-color: var(--auth);
+	border: 2px solid var(--auth);
+}
+.search-btn.user {
+	background-color: var(--success);
+	border: 2px solid var(--success);
 }
 
 /* ------------ */
