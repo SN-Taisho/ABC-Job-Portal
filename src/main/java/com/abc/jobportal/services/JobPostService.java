@@ -1,7 +1,6 @@
 package com.abc.jobportal.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -43,5 +42,12 @@ public class JobPostService {
 	
 	public JobPost findJobPost(Long jpId) {
 		return jobPostRepo.getById(jpId);
+	}
+
+//	-------------------
+//	JOB POST MANAGEMENT
+//	-------------------
+	public void deleteJobPost(Long jpId) {
+		jobPostRepo.deleteById(jpId);
 	}
 }

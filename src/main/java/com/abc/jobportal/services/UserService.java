@@ -101,7 +101,6 @@ public class UserService {
 
 	public User findLoginUser(String username) {
 		return userRepo.findByUsername(username);
-		
 	}
 	
 //	---------------

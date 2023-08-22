@@ -119,6 +119,7 @@ public class ThreadController {
 		String poster = thisThread.getUser().getUsername();
 		
 		if (currentUser.equals(poster)) {
+			threadService.deleteThread(tId);
 			System.out.println("Thread Deleted " + tId);
 			
 			return "redirect:/homepage";
@@ -186,6 +187,7 @@ public class ThreadController {
 		String poster = thisReply.getUser().getUsername();
 		
 		if (currentUser.equals(poster)) {
+			threadReplyService.deleteThreadReply(trId);
 			System.out.println("Reply Deleted " + trId);
 			
 			return "redirect:/thread?tId=" + thisReply.getThreadId();

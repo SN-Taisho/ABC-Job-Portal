@@ -43,4 +43,11 @@ public class ThreadService {
 	public Thread findThread(Long tId) {
 		return threadRepo.getById(tId);
 	}
+	
+//	-----------------
+//	THREAD MANAGEMENT
+//	-----------------
+	public void deleteThread(Long tId) {
+		threadRepo.deleteById(tId);
+	}
 }

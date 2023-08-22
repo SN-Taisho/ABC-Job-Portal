@@ -130,6 +130,7 @@ public class JobPostController {
 		
 		JobPost thisJobPost = jobPostService.findJobPost(jpId);
 		
+		jobPostService.deleteJobPost(jpId);
 		System.out.println("Deleted job post "+ thisJobPost.getId());
 		
 		return "redirect:/homepage";
@@ -201,6 +202,7 @@ public class JobPostController {
 		String poster = thisResponse.getUser().getUsername();
 		
 		if (currentUser.equals(poster)) {
+			jobPostResponseService.deleteJobPostResponse(jrId);
 			System.out.println("Response Deleted " + jrId);
 			
 			return "redirect:/job-post?jpId=" + thisResponse.getJobPostId();

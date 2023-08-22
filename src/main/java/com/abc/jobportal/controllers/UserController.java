@@ -140,6 +140,7 @@ public class UserController {
 		
 		if (currentUserId.equals(thisExperience.getUserId())) {
 			
+			experienceService.deleteExperience(expId);
 			System.out.println("Experience Deleted expId = " + expId);
 			
 			return "redirect:/my-profile";
@@ -203,6 +204,7 @@ public class UserController {
 		
 		if (currentUserId.equals(thisEducation.getUserId())) {
 			
+			educationService.deleteEducation(eduId);
 			System.out.println("Experience Deleted expId = " + eduId);
 			
 			return "redirect:/my-profile";

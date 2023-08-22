@@ -198,7 +198,8 @@ public class AdminController {
 	public String deleteUserJobResponse(@RequestParam Long jrId) {
 		
 		JobPostResponse thisResponse = jobPostResponseService.findJobPostResponse(jrId);
-	
+			
+			jobPostResponseService.deleteJobPostResponse(jrId);
 			System.out.println("Response Deleted by admin" + jrId);
 			
 			return "redirect:/job-post?jpId=" + thisResponse.getJobPostId();
