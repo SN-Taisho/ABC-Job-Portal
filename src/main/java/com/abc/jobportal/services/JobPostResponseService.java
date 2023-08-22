@@ -36,6 +36,10 @@ public class JobPostResponseService {
 		return jobPostResponseRepo.findById(jpId);
 	}
 	
+	public JobPostResponse findJobPostResponse(Long jrId) {
+		return jobPostResponseRepo.getById(jrId);
+	}
+	
 //	-------------------
 //	RESPONSE MANAGEMENT
 //	-------------------

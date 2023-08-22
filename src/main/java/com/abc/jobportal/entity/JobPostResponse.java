@@ -26,6 +26,8 @@ public class JobPostResponse {
 	
 	private String content;
 	
+	private String status;
+	
 	@CreatedDate
 	private String date;
 	
@@ -47,12 +49,13 @@ public class JobPostResponse {
 	public JobPostResponse() {
 		super();
 	}
-	public JobPostResponse(Long id, String contactInfo, String content, String date, Long jobPostId,
+	public JobPostResponse(Long id, String contactInfo, String content, String status, String date, Long jobPostId,
 			User user) {
 		super();
 		this.id = id;
 		this.contactInfo = contactInfo;
 		this.content = content;
+		this.status = status;
 		this.date = date;
 		this.jobPostId = jobPostId;
 		this.user = user;
@@ -95,5 +98,11 @@ public class JobPostResponse {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

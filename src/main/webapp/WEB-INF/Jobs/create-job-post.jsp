@@ -44,6 +44,23 @@
 					style="width: inherit;" />
 			</div>
 			
+			<script>
+            $(document).ready(() => {
+            	
+                $("#photo").change(function () {
+                    const file = this.files[0];
+                    if (file) {
+                        let reader = new FileReader();
+                        reader.onload = function (event) {
+                            $("#imgPreview")
+                              .attr("src", event.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
+      	 	</script>
+			
 			<button class="submit-button" type="submit" style="border-radius: 10px;">Post</button>
 			<a class="cancel-btn" href="/jobs">Cancel</a>
 			

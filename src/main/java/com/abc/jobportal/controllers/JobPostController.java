@@ -17,7 +17,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,7 +37,7 @@ public class JobPostController {
 	JobPostService jobPostService;
 	
 	@Autowired
-	JobPostResponseService jobPostResposeService;
+	JobPostResponseService jobPostResponseService;
 	
 //	-----------------
 //	JOB POST CREATION
@@ -84,7 +83,7 @@ public class JobPostController {
 		
 		jobPostService.save(jobPost);
 		
-		return "redirect:dashboard";
+		return "redirect:jobs";
 	}
 	
 //	-------------
@@ -152,14 +151,19 @@ public class JobPostController {
 //	VIEW JOB POST
 //	-------------
 	@GetMapping("/job-post")
-	public String viewJobPost(@RequestParam Long jpId, Model model) {
+	public String viewJobPost(@RequestParam Long jpId, Model model, Principal principal) {
+		
+		String username = principal.getName();
+		User currentUser = userService.findLoginUser(username);
+		
+		model.addAttribute("currentUser", currentUser);
 		
 		System.out.println("Viewing Job Post Id = " + jpId);
 		JobPost jobPostContent = jobPostService.findJobPost(jpId);
 		List<JobPost> jobPost = new ArrayList<JobPost>();
 		jobPost.add(jobPostContent);
 		
-		List<JobPostResponse> responses = jobPostResposeService.getJobPostResponses(jpId);
+		List<JobPostResponse> responses = jobPostResponseService.getJobPostResponses(jpId);
 		
 		model.addAttribute("jobPost", jobPost);
 		model.addAttribute("responses", responses);
@@ -178,9 +182,29 @@ public class JobPostController {
 		User user = userService.findLoginUser(username);
 		
 		jobPostResponse.setUser(user);
+		jobPostResponse.setStatus("pending");
 		
-		jobPostResposeService.save(jobPostResponse);
+		jobPostResponseService.save(jobPostResponse);
 		
 		return "redirect:/job-post?jpId=" + jobPostResponse.getJobPostId();
+	}
+	
+//	------------------------
+//	DELETE JOB POST RESPONSE
+//	------------------------
+	@GetMapping("delete_response")
+	public String deleteJobResponse(@RequestParam Long jrId, Principal principal) {
+		
+		String currentUser = principal.getName();
+		
+		JobPostResponse thisResponse = jobPostResponseService.findJobPostResponse(jrId);
+		String poster = thisResponse.getUser().getUsername();
+		
+		if (currentUser.equals(poster)) {
+			System.out.println("Response Deleted " + jrId);
+			
+			return "redirect:/job-post?jpId=" + thisResponse.getJobPostId();
+		}
+		return "redirect:/access-denied";
 	}
 }

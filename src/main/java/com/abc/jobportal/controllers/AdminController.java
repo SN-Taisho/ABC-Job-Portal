@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.abc.jobportal.entity.BulkMail;
+import com.abc.jobportal.entity.JobPostResponse;
 import com.abc.jobportal.entity.Role;
 import com.abc.jobportal.entity.User;
 import com.abc.jobportal.services.BulkMailService;
 import com.abc.jobportal.services.EmailService;
+import com.abc.jobportal.services.JobPostResponseService;
 import com.abc.jobportal.services.UserService;
 
 @Controller
@@ -29,6 +31,9 @@ public class AdminController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	JobPostResponseService jobPostResponseService;
 	
 	@Autowired
 	EmailService emailService;
@@ -171,4 +176,31 @@ public class AdminController {
 		}
     	return "redirect:access-denied";
     }
+    
+    
+//	----------------------
+//	UPDATE RESPONSE STATUS
+//	----------------------
+	@PostMapping("update_response")
+	public String updateResponse(@RequestParam Long jrId, @ModelAttribute("jobPostResponse") JobPostResponse jobPostResponse) {
+		
+		JobPostResponse thisJobPost = jobPostResponseService.findJobPostResponse(jrId);
+		
+		thisJobPost.setStatus(jobPostResponse.getStatus());
+		jobPostResponseService.save(thisJobPost);
+		
+    	return "redirect:/job-post?jpId=" + thisJobPost.getId();
+	}
+//	---------------------------------
+//	DELETE JOB POST RESPONSE (Admins)
+//	---------------------------------
+	@GetMapping("delete_user_response")
+	public String deleteUserJobResponse(@RequestParam Long jrId) {
+		
+		JobPostResponse thisResponse = jobPostResponseService.findJobPostResponse(jrId);
+	
+			System.out.println("Response Deleted by admin" + jrId);
+			
+			return "redirect:/job-post?jpId=" + thisResponse.getJobPostId();
+	}
 }

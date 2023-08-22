@@ -30,7 +30,7 @@
 			<p>${jobPostOp}</p>
 		</a>
 		
-		<span class="post-date">Aug 08, 2023</span>
+		<span class="post-date">${jobPostDate}</span>
 		<h5 class="post-heading">Occupation: ${jobPostTitle} at ${jobPostCompany}</h5>
 		<h5 class="post-heading">Salary: ${jobPostSalary}</h5>
 		
@@ -45,30 +45,72 @@
 				<button onclick="window.location.href='delete_job_post?jpId=${jobPostId}'" style="background-color: var(--danger);">Delete</button>
 			</div>
 		</sec:authorize>
+		
 
 	</div>
 	
 	<button id="openApplyJob" class="reply-button btnAnimation">Submit a response</button>
-	
-	<div class="replies-container">
 
+	<sec:authorize access="hasRole('Admin')">
+		<div class="replies-container">
+			<c:forEach items="${responses}" var="r">
+				<div class="reply-card">
+					<a class="reply-user"
+						href="view-profile?username=${r.getUser().getUsername()}"> <img
+						src="images/Profile.png" width="50" />
+						<p>${r.getUser().getFullname()}</p>
+					</a> <span class="reply-date">${r.date}</span>
+
+					<h5 class="post-heading">Responder Information:</h5>
+					<p class="reply-paragraph">Contact: ${r.contactInfo}</p>
+					<p class="reply-paragraph">Email: ${r.getUser().getEmail()}</p>
+
+					<p class="reply-paragraph">${r.content}</p>
+
+					<a class="reply-link btnAnimation"
+						href="/view-profile?username=${r.getUser().getUsername()}">View
+						User Profile</a>
+					<div class="post-management">
+						<sf:form class="role-form" action="/update_response?jrId=${r.id}"
+							method="post" modelAttribute="user">
+								<input value="${r.status}" name="status" path="stauts" style="width: 100px;"/>
+							<button class="crud-actions" type="submit" style="background-color: var(--auth);">Edit</button>
+						</sf:form>
+						<button
+							onclick="window.location.href='delete_user_response?jrId=${r.id}'"
+							style="background-color: var(--danger);">Delete</button>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</sec:authorize>
+
+	<sec:authorize access="hasRole('User')">
 		<c:forEach items="${responses}" var="r">
 			<div class="reply-card">
-				<a class="reply-user" href="view-profile?username=${r.getUser().getUsername()}"> <img
+				<a class="reply-user"
+					href="view-profile?username=${r.getUser().getUsername()}"> <img
 					src="images/Profile.png" width="50" />
 					<p>${r.getUser().getFullname()}</p>
 				</a> <span class="reply-date">${r.date}</span>
-				
+
 				<h5 class="post-heading">Responder Information:</h5>
 				<p class="reply-paragraph">Contact No.: ${r.contactInfo}</p>
-				
+
 				<p class="reply-paragraph">${r.content}</p>
-				
-				<a class="reply-link btnAnimation" href="/view-profile?username=${r.getUser().getUsername()}">View User Profile</a>
+
+				<p class="reply-paragraph" style="color: var(--auth);">
+					Response Status: <span style="color: var(--white);">${r.status}</span>
+				</p>
+
+				<div class="post-management">
+					<button
+						onclick="window.location.href='delete_response?jrId=${r.id}'"
+						style="background-color: var(--danger);">Delete</button>
+				</div>
 			</div>
 		</c:forEach>
-
-	</div>
+	</sec:authorize>
 
 	<dialog id="applyJobModal" class="modal">
 
