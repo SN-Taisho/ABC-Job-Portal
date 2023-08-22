@@ -2,6 +2,7 @@ package com.abc.jobportal.controllers;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.abc.jobportal.entity.BulkMail;
 import com.abc.jobportal.entity.Role;
 import com.abc.jobportal.entity.User;
+import com.abc.jobportal.services.BulkMailService;
 import com.abc.jobportal.services.EmailService;
 import com.abc.jobportal.services.UserService;
 
@@ -31,6 +33,36 @@ public class AdminController {
 	@Autowired
 	EmailService emailService;
 	
+	@Autowired
+	BulkMailService bulkMailService;
+
+//	-----------------
+//	BULK MAIL HISTORY
+//	-----------------
+	@GetMapping("/bulk-mail")
+	public String bulkMailHistory(Model model) {
+		
+		List<BulkMail> bulkMails = bulkMailService.getAllBulkMailByDate();
+		model.addAttribute("bulkMail", bulkMails);
+		
+		return "Admin/bulk-mail-history";
+	}
+	
+//	--------------
+//	SEND BULK MAIL
+//	--------------
+	@GetMapping("/view-mail")
+	public String viewBulkMail(@RequestParam Long bmId, Model model) {
+		
+		BulkMail bulkMail = bulkMailService.findByMailId(bmId);
+		List<BulkMail> bulkMailContent = new ArrayList<BulkMail>();
+		bulkMailContent.add(bulkMail);
+		
+		model.addAttribute("bulkMail",bulkMailContent);
+		
+		return "Admin/view-mail";
+	}
+	
 //	--------------
 //	SEND BULK MAIL
 //	--------------
@@ -40,8 +72,13 @@ public class AdminController {
 	}
 	
 	@PostMapping("send_bulk_mail")
-	public String sendBulkMail(@ModelAttribute("bulkMail") BulkMail bulkMail) 
+	public String sendBulkMail(@ModelAttribute("bulkMail") BulkMail bulkMail, Principal principal) 
 			throws UnsupportedEncodingException, MessagingException {
+		
+		String username = principal.getName();
+		User currentUser = userService.findLoginUser(username);
+		
+		bulkMail.setUser(currentUser);
 		
 		String[] recipients = userService.getAllUserEmail();
 		
@@ -51,8 +88,14 @@ public class AdminController {
 		
 		String subject = bulkMail.getSubject();
 		String body = "<p>" + htmlFormatedText + "</p>";
-
-		emailService.sendBulkMail(recipients, subject, body);
+		
+		bulkMail.setContent(htmlFormatedText);
+		bulkMailService.save(bulkMail);
+		
+//		emailService.sendBulkMail(recipients, subject, body);
+		System.out.println(recipients);
+		System.out.println(subject);
+		System.out.println(body);
 		
 		return "redirect:/send-bulk-mail";
 	}

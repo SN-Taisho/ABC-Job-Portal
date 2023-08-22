@@ -1,7 +1,6 @@
 .default-main {
-	display: grid;
+	display: flex;
 	gap: var(--s);
-	grid-template-columns: 250px 70%;
 	justify-content: space-around;
 	max-width: 1280px;
 	padding-bottom: var(--l)
@@ -13,7 +12,7 @@
 	flex-direction: column;
 	gap: var(--s);
 	justify-content: start;
-	margin: 100px auto;
+	margin: 75px auto;
 	max-width: 1280px;
 	padding: var(--s) var(--tiny) var(--l);
 }
@@ -517,9 +516,6 @@
 
 /* ----- Utility Class Breakpoints ----- */
 @media only screen and (max-width: 1080px) {
-	.default-main {
-	grid-template-columns: 85%;
-	}
 	.side-profile {
 	display: none;
 	}

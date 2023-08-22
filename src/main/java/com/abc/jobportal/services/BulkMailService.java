@@ -31,4 +31,8 @@ public class BulkMailService {
 	public List<BulkMail> getAllBulkMailByDate() {
 		return bulkMailRepo.findAll(Sort.by(Sort.Direction.DESC, "date"));
 	}
+	
+	public BulkMail findByMailId(Long bmId) {
+		return bulkMailRepo.getById(bmId);
+	}
 }
