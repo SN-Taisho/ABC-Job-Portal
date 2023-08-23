@@ -46,7 +46,7 @@ public class EmailService {
 		
 		helper.setFrom("sn.taisho@gmail.com");
 		helper.setTo(recipients);
-		helper.addCc("paulpoliquit123@gmail.com");
+//		helper.addCc("");
 		helper.setSubject(subject);
 		helper.setText(body, true);
 		

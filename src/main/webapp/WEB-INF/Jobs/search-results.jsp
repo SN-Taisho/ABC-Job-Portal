@@ -27,7 +27,6 @@
 		<c:set var="count" value="0" scope="page" />
 		<c:forEach items="${searchJob}" var="j">
 			
-			<c:if test="${j.getUser().getUsername() ne currentUser}">
 				<c:set var="count" scope="page" value="${count + 1}" />
 				
 				<div class="post-card">
@@ -52,8 +51,6 @@
 
 				</div>
 				
-			</c:if>
-
 		</c:forEach>
 		
 		<c:if test="${count == 0}">

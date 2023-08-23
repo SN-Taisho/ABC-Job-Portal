@@ -30,7 +30,7 @@
 			<c:if test="${u.username ne currentUser}">
 				<c:set var="count" scope="page" value="${count + 1}" />
 				<div class="mini-card">
-					<a class="post-op" href="/view-profile/${u.username}"
+					<a class="post-op" href="/view-profile?username=${u.username}"
 						style="margin: auto 0rem;"> <img class="post-profile-img"
 						src="images/Profile.png" width="50" />
 						<div>

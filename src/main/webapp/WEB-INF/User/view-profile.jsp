@@ -88,7 +88,7 @@
 			<c:if test="${t.getUser().getUsername() eq username}">
 				<c:set var="count" scope="page" value="${count + 1}" />
 				<div class="post-card">
-					<a class="post-op" href="view-profile/${t.getUser().getUsername()}"> <img class="post-profile-img"
+					<a class="post-op" href="view-profile?username=${t.getUser().getUsername()}"> <img class="post-profile-img"
 						src="images/Profile.png" width="50" />
 						<p>${t.getUser().getFullname()}</p>
 					</a> <span class="post-date">${t.date}</span>

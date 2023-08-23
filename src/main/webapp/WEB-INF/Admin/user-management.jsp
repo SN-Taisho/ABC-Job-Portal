@@ -23,7 +23,7 @@
 			</thead>
 			<tbody>
 			<c:forEach items="${users}" var="u" varStatus="status">
-				
+				<tr>
 					<td>${status.count}</td>
 					<td>${u.username}</td>
 					<td>${u.fullname}</td>
@@ -45,10 +45,10 @@
 
 					<dialog id="editUserModal${status.count}" class="modal">
 
-					<h3 class="modal-heading">Edit Profile${status.count}</h3>
+					<h3 class="modal-heading">Edit Profile</h3>
 					<span id="error-text" class="form-error"></span>
 					<sf:form id="editUserForm${status.count}" class="align-center flex-col form"
-						method="post" action="update_user_profile" modelAttribute="user">
+						method="post" action="update_user_profile?username=${u.username}" modelAttribute="user">
 
 						<label class="input-group flex-col">Fullname* <input
 							id="fullname" type="text" required="true"
@@ -71,16 +71,12 @@
 					<button id="closeEditUser${status.count}" class="material-icons modal-close">close</button>
 					</dialog>
 					<script>
-					const editProfileM${status.count} = document.querySelector("#editUserModal${status.count}");
-					const openEditProfile${status.count} = document.querySelector("#openEditUser${status.count}");
-					const closeEditProfile${status.count} = document.querySelector("#closeEditUser${status.count}");
-					
-					openEditProfile${status.count}.addEventListener("click", () => {
-						editProfileM${status.count}.showModal();
+					document.querySelector("#openEditUser${status.count}").addEventListener("click", () => {
+						document.querySelector("#editUserModal${status.count}").showModal();
 						});
 					
-					closeEditProfile${status.count}	.addEventListener("click", () => {
-							editProfileM${status.count}.close();
+					document.querySelector("#closeEditUser${status.count}").addEventListener("click", () => {
+						document.querySelector("#editUserModal${status.count}").close();
 						});
 					</script>
 				</tr>

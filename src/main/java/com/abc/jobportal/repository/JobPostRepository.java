@@ -14,7 +14,7 @@ public interface JobPostRepository extends JpaRepository<JobPost, Long> {
 	
 	@Query(value = "SELECT j FROM JobPost j WHERE j.title LIKE '%' || :keyword || '%'"
 			+ " OR j.company LIKE '%' || :keyword || '%'" + " OR j.salary LIKE '%' || :keyword || '%'"
-			+ " OR j.date LIKE '%' || :keyword || '%'")
+			+ " OR j.date LIKE '%' || :keyword || '%'" + " OR j.content LIKE '%' || :keyword || '%'")
 	public List<JobPost> search(@Param("keyword") String keyword);
 
 }

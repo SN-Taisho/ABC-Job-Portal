@@ -188,7 +188,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("reset_request")
-	public String verifyUserEmail(@RequestParam String email, HttpServletRequest request)
+	public String verifyUserEmail(@RequestParam String email, HttpServletRequest request, RedirectAttributes redir)
 		throws UnsupportedEncodingException, MessagingException {
 		
 		if (!(userService.findEmail(email) == null)) {
@@ -212,6 +212,8 @@ public class AuthController {
 			return "redirect:verify-identity?email=" + user.getEmail();
 		} else {
 			System.out.println("User Not Found");
+			String error_msg = "No account uses this email";
+			redir.addFlashAttribute("error_msg", error_msg);
 			return "redirect:forgot-password";
 		}
 	}

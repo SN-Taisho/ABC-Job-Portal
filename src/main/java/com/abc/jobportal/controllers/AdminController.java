@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.abc.jobportal.entity.BulkMail;
 import com.abc.jobportal.entity.JobPostResponse;
@@ -97,12 +96,12 @@ public class AdminController {
 		bulkMail.setContent(htmlFormatedText);
 		bulkMailService.save(bulkMail);
 		
-//		emailService.sendBulkMail(recipients, subject, body);
+		emailService.sendBulkMail(recipients, subject, body);
 		System.out.println(recipients);
 		System.out.println(subject);
 		System.out.println(body);
 		
-		return "redirect:/send-bulk-mail";
+		return "redirect:/bulk-mail";
 	}
 	
 //	---------------
@@ -137,12 +136,9 @@ public class AdminController {
 //	UPDATE USER PROFILE
 //	-------------------
 	@PostMapping("update_user_profile")
-	public String updateProfileInfo(Principal principal, @ModelAttribute("user") User u, RedirectAttributes redir) {
+	public String updateProfileInfo(@ModelAttribute("user") User u, @RequestParam String username) {
 		
-		String username = principal.getName();
-		
-		User user = userService.findLoginUser(username);
-		
+		User user = userService.findUsername(username);
 		user.setFullname(u.getFullname());
 		user.setOccupation(u.getOccupation());
 		user.setLocation(u.getLocation());
@@ -156,25 +152,10 @@ public class AdminController {
 //	DELETE USER PROFILE
 //	-------------------
     @GetMapping("delete_user")
-    public String deleteUser(@RequestParam Long uid, Principal principal) {
+    public String deleteUser(@RequestParam Long uid) {
     	
-		String username = principal.getName();
-		User user = userService.findLoginUser(username);
-
-		String[] role = user.getRoles().stream().map(Role::getName).toArray(String[]::new);
-		String userRole = role[0];
-		String[] roleNames = userService.getAllRoles().stream().map(Role::getName).toArray(String[]::new);
-
-		for (String roleName : roleNames) {
-			if (roleName == userRole && userRole.equalsIgnoreCase("Admin")) {
-				userService.deleteUser(uid);
-				return "redirect:/user-management";
-			}
-			if (roleName == userRole && userRole.equalsIgnoreCase("User")) {
-				return "redirect:/access-denied";
-			}
-		}
-    	return "redirect:access-denied";
+	userService.deleteUser(uid);
+	return "redirect:/user-management";
     }
     
     
