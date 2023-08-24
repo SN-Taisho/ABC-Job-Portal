@@ -163,7 +163,7 @@
 	margin: 0rem 0.5rem;
 	padding: 1rem 0.75rem;
 	height: fit-content;
-	width: 95%;
+	width: 75%;
 }
 
 .post-op {
@@ -195,7 +195,7 @@
 .post-img {
 	aspect-ratio: auto 4 / 3;
 	margin: 0rem auto 1rem;
-	width: 100%;
+	width: 70%;
 }
 
 .post-heading {
@@ -264,7 +264,7 @@
 	margin: 0rem auto;
 	padding: 1rem 0.75rem;
 	height: fit-content;
-	width: 95%;
+	width: 75%;
 }
 
 .reply-user {
