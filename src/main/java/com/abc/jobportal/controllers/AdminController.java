@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.abc.jobportal.entity.BulkMail;
 import com.abc.jobportal.entity.JobPostResponse;
-import com.abc.jobportal.entity.Role;
 import com.abc.jobportal.entity.User;
 import com.abc.jobportal.services.BulkMailService;
 import com.abc.jobportal.services.EmailService;
@@ -145,6 +144,7 @@ public class AdminController {
 		user.setBio(u.getBio());
 		
 		userService.update(user);
+		
 		return "redirect:user-management";
 	}
 	
